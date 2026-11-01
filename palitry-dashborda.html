@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}</style>
+<title>Палитры финансового дашборда</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+/* Страница-витрина: нейтральная рамка, внутри три макета, у каждого своя фиксированная палитра */
+:root {
+  --page-bg: #EEF0F3; --page-fg: #1B2027; --page-muted: #5A6372; --page-line: #D7DBE2;
+  --font: "Manrope", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --page-bg: #111317; --page-fg: #E6E8EC; --page-muted: #9AA2AF; --page-line: #2A2E36; color-scheme: dark } }
+:root[data-theme="dark"] { --page-bg: #111317; --page-fg: #E6E8EC; --page-muted: #9AA2AF; --page-line: #2A2E36; color-scheme: dark }
+
+body { background: var(--page-bg); color: var(--page-fg); font-family: var(--font); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 56px; }
+.wrap { max-width: 1240px; margin: 0 auto; display: grid; gap: 48px; }
+header.intro h1 { font-size: 30px; font-weight: 800; margin: 0 0 6px; text-wrap: balance; }
+header.intro p { margin: 0; color: var(--page-muted); max-width: 70ch; }
+section.variant { display: grid; gap: 14px; }
+.vhead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
+.vhead h2 { margin: 0; font-size: 22px; font-weight: 800; }
+.vhead p { margin: 0; color: var(--page-muted); }
+.swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+.sw { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--page-muted); border: 1px solid var(--page-line); border-radius: 999px; padding: 3px 10px 3px 4px; font-variant-numeric: tabular-nums; }
+.sw i { width: 16px; height: 16px; border-radius: 50%; display: block; border: 1px solid rgba(127,127,127,.35); }
+
+/* ---------- Макет дашборда ---------- */
+.mock { --r: 14px; display: grid; grid-template-columns: 220px minmax(0, 1fr); border-radius: 18px; overflow: hidden;
+  background: var(--bg); color: var(--text); border: 1px solid var(--border); box-shadow: 0 20px 50px -30px rgba(0,0,0,.45); }
+.side { background: var(--side); color: var(--side-text); padding: 22px 14px; display: flex; flex-direction: column; gap: 22px; }
+.brand b { display: block; font-size: 17px; font-weight: 800; line-height: 1.25; }
+.brand span { font-size: 12px; opacity: .7; }
+.nav { display: grid; gap: 4px; }
+.nav a { color: inherit; text-decoration: none; padding: 10px 12px; border-radius: 10px; font-weight: 600; opacity: .78; }
+.nav a.on { background: var(--side-active); color: var(--side-active-text); opacity: 1; }
+.main { padding: 22px; display: grid; gap: 16px; min-width: 0; }
+.top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+.top h3 { margin: 0; font-size: 22px; font-weight: 800; }
+.btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { font: inherit; font-size: 13px; font-weight: 700; padding: 8px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--panel); color: var(--text); cursor: pointer; }
+.btn.pri { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; background: var(--panel); border: 1px solid var(--border); border-radius: var(--r); padding: 12px; }
+.field { display: grid; gap: 4px; flex: 1 1 180px; }
+.field label { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.field div { border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; background: var(--bg); font-variant-numeric: tabular-nums; }
+.period { font-size: 12px; color: var(--muted); }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.kpi { background: var(--panel); border: 1px solid var(--border); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 4px; align-content: start; }
+.kpi .l { font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.kpi .v { font-size: 21px; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.kpi .s { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; color: var(--muted); }
+.chip { font-size: 11px; font-weight: 700; border-radius: 999px; padding: 2px 8px; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.chip.good { color: var(--good); background: color-mix(in srgb, var(--good) 14%, transparent); }
+.chip.warn { color: var(--warn); background: color-mix(in srgb, var(--warn) 16%, transparent); }
+.chip.bad  { color: var(--bad);  background: color-mix(in srgb, var(--bad) 14%, transparent); }
+.kpi.bad { border-color: color-mix(in srgb, var(--bad) 55%, var(--border)); }
+.kpi.bad .v { color: var(--bad); }
+.charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--r); padding: 14px; min-width: 0; display: grid; gap: 8px; }
+.card h4 { margin: 0; font-size: 14px; font-weight: 800; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; display: block; }
+svg.ch { width: 100%; height: auto; display: block; }
+svg.ch text { fill: var(--muted); font-family: var(--font); font-size: 11px; }
+
+@media (max-width: 1000px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .charts { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 720px) {
+  .mock { grid-template-columns: minmax(0, 1fr); }
+  .side { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 14px; gap: 10px; }
+  .brand span { display: none; }
+  .nav { display: flex; flex-wrap: wrap; }
+  .nav a { padding: 6px 10px; }
+  .main { padding: 14px; }
+  .kpi .v { font-size: 18px; }
+}
+
+/* ---------- Палитры (фиксированные, не зависят от темы страницы) ---------- */
+.p2 { --bg:#F3F5F8; --panel:#FFFFFF; --border:#E1E6EE; --text:#1A2230; --muted:#5B6576;
+  --side:#0F1E3A; --side-text:#DCE4F2; --side-active:#2563EB; --side-active-text:#FFFFFF;
+  --accent:#2563EB; --on-accent:#FFFFFF; --s2:#0EA5E9; --s3:#94A3B8; --grid:#E6EAF0;
+  --good:#16A34A; --warn:#C2410C; --bad:#DC2626; color-scheme: light; }
+.p3 { --bg:#0F1222; --panel:#171B33; --border:#272C4F; --text:#E8EAF6; --muted:#9BA0C4;
+  --side:#0A0D1A; --side-text:#C9CCE8; --side-active:#7C5CFF; --side-active-text:#FFFFFF;
+  --accent:#7C5CFF; --on-accent:#FFFFFF; --s2:#2DD4BF; --s3:#5B8DEF; --grid:#232847;
+  --good:#2DD4BF; --warn:#FBBF24; --bad:#F87171; color-scheme: dark; }
+.p4 { --bg:#0B1412; --panel:#12201C; --border:#1F3530; --text:#E7F2EE; --muted:#8FAAA2;
+  --side:#08100E; --side-text:#C6DAD3; --side-active:#10B981; --side-active-text:#04140E;
+  --accent:#10B981; --on-accent:#04140E; --s2:#F5B83D; --s3:#6B8F86; --grid:#1A2C28;
+  --good:#34D399; --warn:#FB923C; --bad:#EF4444; color-scheme: dark; }
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <h1>Палитры финансового дашборда</h1>
+    <p>Один и тот же экран «Дашборд» в трёх палитрах. Цифры примерные, взяты со скриншота для наглядности. Красным подсвечивается только проблема, жёлто-оранжевым то, на что стоит обратить внимание.</p>
+  </header>
+
+  <section class="variant">
+    <div class="vhead"><h2>2. Светлый деловой</h2><p>Белые карточки, тёмно-синее меню, синий акцент. Удобно в работе днём и при печати.</p></div>
+    <div class="swatches" data-for="p2"></div>
+    <div class="mock p2" id="m2"></div>
+  </section>
+
+  <section class="variant">
+    <div class="vhead"><h2>3. Ночной индиго</h2><p>Глубокий синий фон, фиолетовый акцент, бирюза для роста. Современно и мягче, чем на скриншоте.</p></div>
+    <div class="swatches" data-for="p3"></div>
+    <div class="mock p3" id="m3"></div>
+  </section>
+
+  <section class="variant">
+    <div class="vhead"><h2>4. Изумруд и золото</h2><p>Тёмно-зелёный фон, изумрудный акцент, золото второй серией. «Денежный», премиальный характер.</p></div>
+    <div class="swatches" data-for="p4"></div>
+    <div class="mock p4" id="m4"></div>
+  </section>
+</div>
+
+<script>
+const PAL = {
+  p2: [["Фон","#F3F5F8"],["Карточки","#FFFFFF"],["Меню","#0F1E3A"],["Акцент","#2563EB"],["Серия 2","#0EA5E9"],["Норма","#16A34A"],["Внимание","#C2410C"],["Проблема","#DC2626"]],
+  p3: [["Фон","#0F1222"],["Карточки","#171B33"],["Меню","#0A0D1A"],["Акцент","#7C5CFF"],["Серия 2","#2DD4BF"],["Серия 3","#5B8DEF"],["Внимание","#FBBF24"],["Проблема","#F87171"]],
+  p4: [["Фон","#0B1412"],["Карточки","#12201C"],["Меню","#08100E"],["Акцент","#10B981"],["Серия 2","#F5B83D"],["Серия 3","#6B8F86"],["Внимание","#FB923C"],["Проблема","#EF4444"]],
+};
+document.querySelectorAll(".swatches").forEach(el => {
+  el.innerHTML = PAL[el.dataset.for].map(([n, c]) => `<span class="sw"><i style="background:${c}"></i>${n} ${c}</span>`).join("");
+});
+
+const KPI = [
+  ["Чистый денежный поток", "60 631 480 ₽", "за период", "good", "рост"],
+  ["Cash buffer", "97,1 дн.", "запас денег", "good", "норма"],
+  ["Текущая ликвидность", "0,08", "норма 1,5–2", "bad", "ниже нормы"],
+  ["Чистая прибыль", "40 210 483 ₽", "за период", "good", "рост"],
+  ["Рентабельность по ЧП", "29,43 %", "", "good", "норма"],
+  ["ROE", "79,4 %", "собств. капитал 70,7 млн", "good", "высокая"],
+  ["Оборачиваемость ДЗ", "66,3 дн.", "2,74 раза", "warn", "долго"],
+  ["Оборачиваемость КЗ", "147,9 дн.", "1,23 раза", "warn", "долго"],
+];
+const MONTHS = ["янв","фев","мар","апр","май","июн"];
+const NET = [11.2, 1.8, -12.4, 18.9, 21.0, 21.6];
+const OPS = [13.0, 2.1, -11.8, 16.5, 20.2, 19.8];
+const INV = [-1.2, -0.4, -0.9, -0.6, -0.3, -0.4];
+const FIN = [-0.6, 0.1, 0.3, 3.0, 1.1, 2.2];
+
+const W = 560, H = 230, PL = 40, PR = 14, PT = 12, PB = 28, MIN = -20, MAX = 40;
+const y = v => PT + (MAX - v) / (MAX - MIN) * (H - PT - PB);
+const fmt = v => (v > 0 ? "" : "") + String(v).replace(".", ",");
+
+function axes() {
+  let s = "";
+  for (let t = MIN; t <= MAX; t += 20) {
+    s += `<line x1="${PL}" x2="${W - PR}" y1="${y(t)}" y2="${y(t)}" stroke="var(--grid)" stroke-width="${t === 0 ? 1.5 : 1}"/>`;
+    s += `<text x="${PL - 8}" y="${y(t) + 4}" text-anchor="end">${t}</text>`;
+  }
+  return s;
+}
+
+function lineChart() {
+  const step = (W - PL - PR - 40) / 5, x = i => PL + 20 + i * step;
+  const pts = NET.map((v, i) => `${x(i)},${y(v)}`).join(" ");
+  const area = `${x(0)},${y(0)} ${pts} ${x(5)},${y(0)}`;
+  let s = axes();
+  s += `<polygon points="${area}" fill="var(--accent)" fill-opacity=".16"/>`;
+  s += `<polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>`;
+  NET.forEach((v, i) => {
+    const last = i === 5, neg = v < 0;
+    s += `<circle cx="${x(i)}" cy="${y(v)}" r="${last ? 5.5 : 3.5}" fill="${neg ? "var(--bad)" : "var(--accent)"}" stroke="var(--panel)" stroke-width="2"/>`;
+    s += `<text x="${x(i)}" y="${H - 8}" text-anchor="middle">${MONTHS[i]}</text>`;
+  });
+  s += `<text x="${x(5)}" y="${y(NET[5]) - 12}" text-anchor="middle" style="fill:var(--text);font-weight:700">${fmt(NET[5])}</text>`;
+  s += `<text x="${x(2) + 8}" y="${y(NET[2]) + 4}" style="fill:var(--bad);font-weight:700">${fmt(NET[2])}</text>`;
+  return `<svg class="ch" viewBox="0 0 ${W} ${H}" role="img" aria-label="Чистый денежный поток по месяцам, млн ₽">${s}</svg>`;
+}
+
+function barChart() {
+  const step = (W - PL - PR) / 6, bw = 30;
+  const series = [[OPS, "var(--accent)"], [INV, "var(--s3)"], [FIN, "var(--s2)"]];
+  let s = axes();
+  MONTHS.forEach((m, i) => {
+    const cx = PL + step * i + step / 2;
+    let up = 0, down = 0;
+    series.forEach(([arr, col]) => {
+      const v = arr[i];
+      if (v >= 0) { s += `<rect x="${cx - bw / 2}" y="${y(up + v)}" width="${bw}" height="${y(up) - y(up + v)}" fill="${col}" rx="2"/>`; up += v; }
+      else { s += `<rect x="${cx - bw / 2}" y="${y(down)}" width="${bw}" height="${y(down + v) - y(down)}" fill="${col}" rx="2"/>`; down += v; }
+    });
+    s += `<text x="${cx}" y="${H - 8}" text-anchor="middle">${m}</text>`;
+  });
+  return `<svg class="ch" viewBox="0 0 ${W} ${H}" role="img" aria-label="Чистый денежный поток по направлениям, млн ₽">${s}</svg>`;
+}
+
+function mock() {
+  return `
+  <aside class="side">
+    <div class="brand"><b>Финансовое состояние компании</b><span>Web-приложение на Google Apps Script</span></div>
+    <nav class="nav"><a class="on" href="#">Дашборд</a><a href="#">Деньги</a><a href="#">Капитал</a><a href="#">Прибыль</a></nav>
+  </aside>
+  <div class="main">
+    <div class="top"><h3>Финансовый дашборд</h3>
+      <div class="btns"><button class="btn pri" type="button">Обновить</button><button class="btn" type="button">Настройки</button><button class="btn" type="button">Выход</button></div></div>
+    <div class="filters">
+      <div class="field"><label>Дата начала</label><div>01.01.2026</div></div>
+      <div class="field"><label>Дата конца</label><div>30.06.2026</div></div>
+      <button class="btn pri" type="button">Применить</button><button class="btn" type="button">Сброс</button>
+    </div>
+    <div class="period">Период: 01.01.2026 — 30.06.2026 · срез на 30.06.2026 · пример данных</div>
+    <div class="kpis">${KPI.map(([l, v, sub, st, t]) => `
+      <div class="kpi ${st === "bad" ? "bad" : ""}"><div class="l">${l}</div><div class="v">${v}</div>
+        <div class="s"><span>${sub}</span><span class="chip ${st}">${t}</span></div></div>`).join("")}
+    </div>
+    <div class="charts">
+      <div class="card"><h4>Чистый денежный поток по месяцам, млн ₽</h4>${lineChart()}</div>
+      <div class="card"><h4>Денежный поток по направлениям, млн ₽</h4>
+        <div class="legend"><span><i style="background:var(--accent)"></i>Операционный</span><span><i style="background:var(--s3)"></i>Инвестиционный</span><span><i style="background:var(--s2)"></i>Финансовый</span></div>
+        ${barChart()}</div>
+    </div>
+  </div>`;
+}
+["m2", "m3", "m4"].forEach(id => document.getElementById(id).innerHTML = mock());
+</script>
+
+</html>
