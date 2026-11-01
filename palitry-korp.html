@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}</style>
+<title>Корпоративные палитры дашборда</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Витрина: нейтральная рамка, внутри три макета «Светлого делового» для крупного бизнеса, у каждого своя палитра */
+:root {
+  --page-bg: #EEF0F3; --page-fg: #1B2027; --page-muted: #5A6372; --page-line: #D7DBE2;
+  --font: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --page-bg: #111317; --page-fg: #E6E8EC; --page-muted: #9AA2AF; --page-line: #2A2E36; color-scheme: dark } }
+:root[data-theme="dark"] { --page-bg: #111317; --page-fg: #E6E8EC; --page-muted: #9AA2AF; --page-line: #2A2E36; color-scheme: dark }
+
+body { background: var(--page-bg); color: var(--page-fg); font-family: var(--font); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 56px; }
+.wrap { max-width: 1240px; margin: 0 auto; display: grid; gap: 48px; }
+header.intro h1 { font-size: 30px; font-weight: 700; margin: 0 0 6px; text-wrap: balance; }
+header.intro p { margin: 0; color: var(--page-muted); max-width: 75ch; }
+section.variant { display: grid; gap: 14px; }
+.vhead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
+.vhead h2 { margin: 0; font-size: 22px; font-weight: 700; }
+.vhead p { margin: 0; color: var(--page-muted); }
+.swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+.sw { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--page-muted); border: 1px solid var(--page-line); border-radius: 999px; padding: 3px 10px 3px 4px; font-variant-numeric: tabular-nums; }
+.sw i { width: 16px; height: 16px; border-radius: 50%; display: block; border: 1px solid rgba(127,127,127,.35); }
+
+/* ---------- Макет: строгая форма, рамки 1px без теней, скругление 8px ---------- */
+.mock { --r: 8px; display: grid; grid-template-columns: 220px minmax(0, 1fr); border-radius: 10px; overflow: hidden;
+  background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+.side { background: var(--side); color: var(--side-text); padding: 22px 14px; display: flex; flex-direction: column; gap: 22px; }
+.brand { padding-bottom: 18px; border-bottom: 1px solid var(--detail); }
+.brand b { display: block; font-size: 16px; font-weight: 700; line-height: 1.3; }
+.brand span { font-size: 12px; opacity: .7; }
+.nav { display: grid; gap: 2px; }
+.nav a { color: inherit; text-decoration: none; padding: 9px 12px; border-radius: 6px; font-weight: 500; opacity: .75; border-left: 2px solid transparent; }
+.nav a.on { background: var(--side-active); color: var(--side-active-text); opacity: 1; font-weight: 600; border-left-color: var(--detail); }
+.main { padding: 22px; display: grid; gap: 14px; min-width: 0; }
+.top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--detail); }
+.top h3 { margin: 0; font-size: 21px; font-weight: 700; }
+.btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { font: inherit; font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--panel); color: var(--text); cursor: pointer; }
+.btn.pri { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; background: var(--panel); border: 1px solid var(--border); border-radius: var(--r); padding: 12px; }
+.field { display: grid; gap: 4px; flex: 1 1 180px; }
+.field label { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.field div { border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; background: var(--bg); font-variant-numeric: tabular-nums; }
+.period { font-size: 12px; color: var(--muted); }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.kpi { background: var(--panel); border: 1px solid var(--border); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 4px; align-content: start; }
+.kpi .l { font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.kpi .v { font-size: 21px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.kpi .s { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; color: var(--muted); }
+.chip { font-size: 11px; font-weight: 600; border-radius: 4px; padding: 1px 7px; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.chip.good { color: var(--good); background: color-mix(in srgb, var(--good) 10%, transparent); }
+.chip.warn { color: var(--warn); background: color-mix(in srgb, var(--warn) 12%, transparent); }
+.chip.bad  { color: var(--bad);  background: color-mix(in srgb, var(--bad) 10%, transparent); }
+.kpi.bad { border-color: color-mix(in srgb, var(--bad) 45%, var(--border)); }
+.kpi.bad .v { color: var(--bad); }
+.charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--r); padding: 14px; min-width: 0; display: grid; gap: 8px; }
+.card h4 { margin: 0; font-size: 14px; font-weight: 700; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 10px; height: 10px; border-radius: 2px; display: block; }
+.legend i.dash { height: 0; width: 16px; border-top: 2px dashed var(--plan); border-radius: 0; }
+svg.ch { width: 100%; height: auto; display: block; }
+svg.ch text { fill: var(--muted); font-family: var(--font); font-size: 11px; }
+
+@media (max-width: 1000px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .charts { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 720px) {
+  .mock { grid-template-columns: minmax(0, 1fr); }
+  .side { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 14px; gap: 10px; }
+  .brand { border-bottom: 0; padding-bottom: 0; }
+  .brand span { display: none; }
+  .nav { display: flex; flex-wrap: wrap; }
+  .nav a { padding: 6px 10px; }
+  .main { padding: 14px; }
+  .kpi .v { font-size: 18px; }
+}
+
+/* ---------- Палитры (фиксированные). Статусы общие, приглушённые ---------- */
+.pa, .pb, .pc { --text:#0F172A; --muted:#475467; --panel:#FFFFFF; --on-accent:#FFFFFF;
+  --good:#15803D; --warn:#B45309; --bad:#B91C1C; color-scheme: light; }
+.pa { --bg:#F4F6F9; --border:#DDE3EA; --grid:#E8ECF1;
+  --side:#0B1F3A; --side-text:#D5DEEB; --side-active:#16325A; --side-active-text:#FFFFFF;
+  --accent:#1D4ED8; --s1:#1D4ED8; --s2:#0891B2; --s3:#64748B; --plan:#93A6C4; --detail:transparent; }
+.pb { --bg:#F3F6F6; --border:#DCE4E4; --grid:#E6ECEC;
+  --side:#0E2A35; --side-text:#D3E2E3; --side-active:#16404E; --side-active-text:#FFFFFF;
+  --accent:#0F766E; --s1:#0F766E; --s2:#1E40AF; --s3:#94A3B8; --plan:#8FB8B3; --detail:#B08D57; }
+.pc { --bg:#F5F6F7; --border:#DFE2E6; --grid:#E9EBEE;
+  --side:#1F2328; --side-text:#D9DCE1; --side-active:#30363D; --side-active-text:#FFFFFF;
+  --accent:#2F5BEA; --s1:#1E3A8A; --s2:#3B82F6; --s3:#93C5FD; --plan:#9DB4E8; --detail:transparent; }
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <h1>Корпоративные палитры дашборда</h1>
+    <p>Три варианта «Светлого делового» для крупного бизнеса. Общее у всех: рамки вместо теней, скругление 8 px, шрифт IBM Plex Sans с цифрами одной ширины, приглушённые статусы, план показан пунктиром рядом с фактом. Цифры примерные.</p>
+  </header>
+
+  <section class="variant">
+    <div class="vhead"><h2>А. Корпоративный синий</h2><p>Классика корпоративных систем, подходит любой отрасли.</p></div>
+    <div class="swatches" data-for="pa"></div>
+    <div class="mock pa" id="ma"></div>
+  </section>
+
+  <section class="variant">
+    <div class="vhead"><h2>Б. Банковский петроль</h2><p>Солидно и дорого, золотые тонкие линии в меню и шапке.</p></div>
+    <div class="swatches" data-for="pb"></div>
+    <div class="mock pb" id="mb"></div>
+  </section>
+
+  <section class="variant">
+    <div class="vhead"><h2>В. Графит и синий</h2><p>Аналитический стиль, минимум цвета, серии одной синей шкалой.</p></div>
+    <div class="swatches" data-for="pc"></div>
+    <div class="mock pc" id="mc"></div>
+  </section>
+</div>
+
+<script>
+const STATUS = [["Норма","#15803D"],["Внимание","#B45309"],["Проблема","#B91C1C"]];
+const PAL = {
+  pa: [["Фон","#F4F6F9"],["Меню","#0B1F3A"],["Акцент","#1D4ED8"],["Серия 2","#0891B2"],["Серия 3","#64748B"], ...STATUS],
+  pb: [["Фон","#F3F6F6"],["Меню","#0E2A35"],["Акцент","#0F766E"],["Серия 2","#1E40AF"],["Серия 3","#94A3B8"],["Линии","#B08D57"], ...STATUS],
+  pc: [["Фон","#F5F6F7"],["Меню","#1F2328"],["Акцент","#2F5BEA"],["Серия 1","#1E3A8A"],["Серия 2","#3B82F6"],["Серия 3","#93C5FD"], ...STATUS],
+};
+document.querySelectorAll(".swatches").forEach(el => {
+  el.innerHTML = PAL[el.dataset.for].map(([n, c]) => `<span class="sw"><i style="background:${c}"></i>${n} ${c}</span>`).join("");
+});
+
+const KPI = [
+  ["Чистый денежный поток", "60 631 480 ₽", "+12,4 % к пред. периоду", "good", "норма"],
+  ["Cash buffer", "97,1 дн.", "запас денег", "good", "норма"],
+  ["Текущая ликвидность", "0,08", "норма 1,5–2", "bad", "ниже нормы"],
+  ["Чистая прибыль", "40 210 483 ₽", "план 38,0 млн", "good", "выше плана"],
+  ["Рентабельность по ЧП", "29,43 %", "план 27 %", "good", "норма"],
+  ["ROE", "79,4 %", "собств. капитал 70,7 млн", "good", "норма"],
+  ["Оборачиваемость ДЗ", "66,3 дн.", "2,74 раза", "warn", "выше нормы"],
+  ["Оборачиваемость КЗ", "147,9 дн.", "1,23 раза", "warn", "выше нормы"],
+];
+const MONTHS = ["янв","фев","мар","апр","май","июн"];
+const NET  = [11.2, 1.8, -12.4, 18.9, 21.0, 21.6];
+const PLAN = [9.0, 6.0, -4.0, 14.0, 18.0, 20.0];
+const OPS = [13.0, 2.1, -11.8, 16.5, 20.2, 19.8];
+const INV = [-1.2, -0.4, -0.9, -0.6, -0.3, -0.4];
+const FIN = [-0.6, 0.1, 0.3, 3.0, 1.1, 2.2];
+
+const W = 560, H = 230, PL = 40, PR = 14, PT = 12, PB = 28, MIN = -20, MAX = 40;
+const y = v => PT + (MAX - v) / (MAX - MIN) * (H - PT - PB);
+const fmt = v => String(v).replace(".", ",");
+
+function axes() {
+  let s = "";
+  for (let t = MIN; t <= MAX; t += 20) {
+    s += `<line x1="${PL}" x2="${W - PR}" y1="${y(t)}" y2="${y(t)}" stroke="var(--grid)" stroke-width="${t === 0 ? 1.5 : 1}"/>`;
+    s += `<text x="${PL - 8}" y="${y(t) + 4}" text-anchor="end">${t}</text>`;
+  }
+  return s;
+}
+
+function lineChart() {
+  const step = (W - PL - PR - 40) / 5, x = i => PL + 20 + i * step;
+  const pts = NET.map((v, i) => `${x(i)},${y(v)}`).join(" ");
+  const plan = PLAN.map((v, i) => `${x(i)},${y(v)}`).join(" ");
+  const area = `${x(0)},${y(0)} ${pts} ${x(5)},${y(0)}`;
+  let s = axes();
+  s += `<polygon points="${area}" fill="var(--s1)" fill-opacity=".10"/>`;
+  s += `<polyline points="${plan}" fill="none" stroke="var(--plan)" stroke-width="2" stroke-dasharray="5 4"/>`;
+  s += `<polyline points="${pts}" fill="none" stroke="var(--s1)" stroke-width="2.25" stroke-linejoin="round"/>`;
+  NET.forEach((v, i) => {
+    const last = i === 5, neg = v < 0;
+    s += `<circle cx="${x(i)}" cy="${y(v)}" r="${last ? 5 : 3}" fill="${neg ? "var(--bad)" : "var(--s1)"}" stroke="var(--panel)" stroke-width="2"/>`;
+    s += `<text x="${x(i)}" y="${H - 8}" text-anchor="middle">${MONTHS[i]}</text>`;
+  });
+  s += `<text x="${x(5)}" y="${y(NET[5]) - 12}" text-anchor="middle" style="fill:var(--text);font-weight:600">${fmt(NET[5])}</text>`;
+  s += `<text x="${x(2) + 8}" y="${y(NET[2]) + 4}" style="fill:var(--bad);font-weight:600">${fmt(NET[2])}</text>`;
+  return `<svg class="ch" viewBox="0 0 ${W} ${H}" role="img" aria-label="Чистый денежный поток по месяцам, факт и план, млн ₽">${s}</svg>`;
+}
+
+function barChart() {
+  const step = (W - PL - PR) / 6, bw = 28;
+  const series = [[OPS, "var(--s1)"], [INV, "var(--s3)"], [FIN, "var(--s2)"]];
+  let s = axes();
+  MONTHS.forEach((m, i) => {
+    const cx = PL + step * i + step / 2;
+    let up = 0, down = 0;
+    series.forEach(([arr, col]) => {
+      const v = arr[i];
+      if (v >= 0) { s += `<rect x="${cx - bw / 2}" y="${y(up + v)}" width="${bw}" height="${y(up) - y(up + v)}" fill="${col}"/>`; up += v; }
+      else { s += `<rect x="${cx - bw / 2}" y="${y(down)}" width="${bw}" height="${y(down + v) - y(down)}" fill="${col}"/>`; down += v; }
+    });
+    s += `<text x="${cx}" y="${H - 8}" text-anchor="middle">${m}</text>`;
+  });
+  return `<svg class="ch" viewBox="0 0 ${W} ${H}" role="img" aria-label="Чистый денежный поток по направлениям, млн ₽">${s}</svg>`;
+}
+
+function mock() {
+  return `
+  <aside class="side">
+    <div class="brand"><b>Финансовое состояние компании</b><span>Web-приложение на Google Apps Script</span></div>
+    <nav class="nav"><a class="on" href="#">Дашборд</a><a href="#">Деньги</a><a href="#">Капитал</a><a href="#">Прибыль</a></nav>
+  </aside>
+  <div class="main">
+    <div class="top"><h3>Финансовый дашборд</h3>
+      <div class="btns"><button class="btn pri" type="button">Обновить</button><button class="btn" type="button">Настройки</button><button class="btn" type="button">Выход</button></div></div>
+    <div class="filters">
+      <div class="field"><label>Дата начала</label><div>01.01.2026</div></div>
+      <div class="field"><label>Дата конца</label><div>30.06.2026</div></div>
+      <button class="btn pri" type="button">Применить</button><button class="btn" type="button">Сброс</button>
+    </div>
+    <div class="period">Период: 01.01.2026 — 30.06.2026 · срез на 30.06.2026 · пример данных</div>
+    <div class="kpis">${KPI.map(([l, v, sub, st, t]) => `
+      <div class="kpi ${st === "bad" ? "bad" : ""}"><div class="l">${l}</div><div class="v">${v}</div>
+        <div class="s"><span>${sub}</span><span class="chip ${st}">${t}</span></div></div>`).join("")}
+    </div>
+    <div class="charts">
+      <div class="card"><h4>Чистый денежный поток по месяцам, млн ₽</h4>
+        <div class="legend"><span><i style="background:var(--s1)"></i>Факт</span><span><i class="dash"></i>План</span></div>
+        ${lineChart()}</div>
+      <div class="card"><h4>Денежный поток по направлениям, млн ₽</h4>
+        <div class="legend"><span><i style="background:var(--s1)"></i>Операционный</span><span><i style="background:var(--s3)"></i>Инвестиционный</span><span><i style="background:var(--s2)"></i>Финансовый</span></div>
+        ${barChart()}</div>
+    </div>
+  </div>`;
+}
+["ma", "mb", "mc"].forEach(id => document.getElementById(id).innerHTML = mock());
+</script>
+
+</html>
