@@ -146,7 +146,7 @@ footer{padding:28px 0 60px;font-size:13.5px;color:#868C99;text-align:center}
       </div>
       <div class="cell free">
         <div class="lbl" id="lbl2">Вернёт нейросеть</div>
-        <div class="val"><span id="hoursFree">20</span> часов</div>
+        <div class="val"><span id="hoursFree">20</span> часов/мес</div>
         <div class="bars"><i id="barFree" style="width:45%"></i></div>
         <div class="hint" id="h2">столько экономит команда Галины за месяц</div>
       </div>
@@ -217,7 +217,6 @@ footer{padding:28px 0 60px;font-size:13.5px;color:#868C99;text-align:center}
 <script>
 function demo(e){ e.preventDefault(); alert('Это макет для просмотра. В рабочей версии здесь стандартная форма GetCourse.'); return false; }
 
-/* калькулятор: часы считаем от числа клиентов, возврат времени — доля механики */
 /* Считаем только на подтверждённых цифрах: средний чек 20 000 ₽ и 20 часов, которые
    нейросеть возвращает за месяц — этого времени хватает ещё на двух клиентов. */
 var CHEK = 20000, PLUS = 2, HOURS = 20;
@@ -237,21 +236,22 @@ var TXT = {
 };
 function fmt(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
 function render(c){
-  var d = DATA[c];
-  var t = TXT[d.mode === 'new' ? 'new' : 'have'];
+  var n = parseInt(c, 10);
+  var t = TXT[n === 0 ? 'new' : 'have'];
+  var nowMoney = n * CHEK, willMoney = (n + PLUS) * CHEK;
   document.getElementById('lbl1').textContent = t.l1;
   document.getElementById('lbl2').textContent = t.l2;
   document.getElementById('lbl3').textContent = t.l3;
   document.getElementById('h1').textContent = t.h1;
   document.getElementById('h2').textContent = t.h2;
+  document.getElementById('h3').textContent = t.h3;
   document.getElementById('foot').innerHTML = t.foot;
-  document.getElementById('h3').innerHTML = 'при чеке 20 000 ₽, это <span id="clients">' + d.clients + '</span> клиента';
-  document.getElementById('hoursNow').textContent = d.now;
-  document.getElementById('hoursFree').textContent = d.free;
-  document.getElementById('money').textContent = fmt(d.clients * 20000);
-  document.getElementById('barNow').style.width = Math.round(d.now / 77 * 100) + '%';
-  document.getElementById('barFree').style.width = Math.round(d.free / 44 * 100) + '%';
-  document.getElementById('barMoney').style.width = Math.round(d.clients / 4 * 100) + '%';
+  document.getElementById('hoursNow').textContent = n === 0 ? '0' : fmt(nowMoney);
+  document.getElementById('hoursFree').textContent = HOURS;
+  document.getElementById('money').textContent = fmt(willMoney);
+  document.getElementById('barNow').style.width = Math.round(nowMoney / 260000 * 100) + '%';
+  document.getElementById('barFree').style.width = '100%';
+  document.getElementById('barMoney').style.width = Math.round(willMoney / 260000 * 100) + '%';
 }
 document.querySelectorAll('.pick button').forEach(function(b){
   b.addEventListener('click', function(){
