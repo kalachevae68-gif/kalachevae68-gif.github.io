@@ -26,6 +26,9 @@ img{max-width:100%;height:auto;display:block}
 .head .org{font-family:Inter,sans-serif;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft)}
 .head .when{margin-top:7px;font-family:Inter,sans-serif;font-size:14.5px;font-weight:700}
 .head .when b{color:var(--orange)}
+.head-btn{display:inline-block;margin-top:12px;font-family:Inter,sans-serif;font-size:14.5px;font-weight:700;color:#fff;background:var(--orange);
+  text-decoration:none;padding:9px 20px;border-radius:2px}
+.head-btn:hover{background:#C05608}
 
 .letter{padding:40px 0 10px}
 .date{font-family:Inter,sans-serif;font-size:13.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
@@ -96,6 +99,7 @@ footer{padding:0 0 50px;font-family:Inter,sans-serif;font-size:13px;color:#8C847
 <div class="head">
   <div class="org">Бухгалтер на миллион</div>
   <div class="when">Бесплатный онлайн-урок сегодня в <b class="lp-time">13:00</b> мск</div>
+  <a class="head-btn" href="#zapis">Записаться</a>
 </div>
 
 <article class="sheet letter">
@@ -135,7 +139,7 @@ footer{padding:0 0 50px;font-family:Inter,sans-serif;font-size:13px;color:#8C847
     <div class="nm"><b>Галина Волкова</b><span>эксперт школы «Бухгалтер на миллион»</span></div>
   </div>
 
-  <form class="form-sheet" onsubmit="return demo(event)">
+  <form class="form-sheet" id="zapis" onsubmit="return demo(event)">
     <h2>Записаться на урок</h2>
     <div class="meta">Сегодня в <b class="lp-time">13:00</b> мск · онлайн · бесплатно</div>
     <input class="f-input" placeholder="Имя">
