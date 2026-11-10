@@ -22,17 +22,17 @@ img{max-width:100%;height:auto;display:block}
 .wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
 
 /* первый экран */
-.hero{background:radial-gradient(75% 90% at 78% 8%,#FFE9CE,transparent 70%),var(--cream);padding:30px 0 34px}
+.hero{background:radial-gradient(75% 90% at 78% 8%,#FFE9CE,transparent 70%),var(--cream);padding:30px 0 40px;overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:40px;align-items:center}
-.tag{display:inline-block;background:#fff;border:1px solid #F3DDBF;color:var(--orange-dp);font-size:12.5px;font-weight:800;
+.tag{display:inline-block;max-width:100%;background:#fff;border:1px solid #F3DDBF;color:var(--orange-dp);font-size:12.5px;font-weight:800;
   letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;border-radius:999px}
 h1{margin-top:18px;font-size:clamp(28px,3.6vw,46px);line-height:1.1;font-weight:900;letter-spacing:-.025em}
 h1 span{color:var(--orange-dp)}
 .sub{margin-top:14px;font-size:18px;color:var(--soft);max-width:520px}
-.meta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
-.meta span{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:15px;font-weight:700}
+.meta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+.meta span{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:15px;font-weight:700;white-space:nowrap}
 .meta span b{color:var(--orange-dp)}
-.photo{margin-top:20px;max-width:330px}
+.photo{margin-top:20px;max-width:300px}
 .photo img{filter:drop-shadow(0 18px 34px rgba(170,90,10,.22))}
 
 /* карточка формы */
@@ -86,6 +86,8 @@ footer{padding:26px 0 60px;font-size:13.5px;color:#8B9099;text-align:center}
 
 @media (max-width:900px){
   .hero{padding:18px 0 26px}
+  .tag{font-size:11px;letter-spacing:.06em;padding:8px 13px}
+  .meta span{font-size:14px;padding:9px 12px}
   .hero-grid,.final-grid{grid-template-columns:minmax(0,1fr);gap:18px}
   .photo{display:none}
   h1{font-size:clamp(24px,6.4vw,33px);margin-top:12px}
@@ -108,7 +110,7 @@ footer{padding:26px 0 60px;font-size:13.5px;color:#8B9099;text-align:center}
       <p class="sub">Без переработок и сложных технологий. Галина Волкова откроет свой экран и покажет на реальных задачах: требование ФНС, договор, сверка КУДиР.</p>
       <div class="meta">
         <span>Сегодня в <b class="lp-time">13:00</b> мск</span>
-        <span>Онлайн, 60 минут</span>
+        <span>Онлайн</span>
         <span>Бесплатно</span>
       </div>
       <div class="photo">
@@ -174,7 +176,7 @@ footer{padding:26px 0 60px;font-size:13.5px;color:#8B9099;text-align:center}
     </div>
     <form class="card" onsubmit="return demo(event)">
       <h2>Получить ссылку на урок</h2>
-      <div class="free">Бесплатно, 60 минут, онлайн</div>
+      <div class="free">Онлайн, бесплатно</div>
       <input class="f-input" placeholder="Ваше имя">
       <input class="f-input" placeholder="Ваш email">
       <input class="f-input" placeholder="Номер телефона">

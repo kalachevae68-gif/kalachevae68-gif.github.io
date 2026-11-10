@@ -46,7 +46,7 @@ h1 span{color:var(--orange)}
 /* расписание дня */
 .day{margin:22px auto 0;max-width:620px;text-align:left}
 .slot{display:grid;grid-template-columns:62px minmax(0,1fr);gap:14px;align-items:stretch;margin-bottom:10px}
-.slot .hh{font-size:14px;font-weight:700;color:var(--soft);padding-top:14px;font-variant-numeric:tabular-nums}
+.slot .hh{font-size:14px;font-weight:700;color:var(--soft);font-variant-numeric:tabular-nums;display:flex;align-items:center}
 .slot .box{border-radius:14px;padding:14px 16px;font-size:16px;font-weight:600;border:1px solid transparent;transition:.25s}
 .box.work{background:var(--soft-bg);border-color:var(--line)}
 .box.pain{background:var(--red-bg);border-color:#F6CFC7;color:#9C2E1E}
@@ -130,8 +130,8 @@ footer{padding:30px 0 60px;font-size:13.5px;color:#8E8E96;text-align:center}
   <div class="day" id="day"></div>
 
   <div class="result">
-    <div class="res bad" id="r1"><span>Ноутбук закрыт</span><b>в 23:10</b></div>
-    <div class="res bad" id="r2"><span>На механике за день</span><b>5 ч 40 мин</b></div>
+    <div class="res bad" id="r1"><span>Требование заняло</span><b>весь вечер</b></div>
+    <div class="res bad" id="r2"><span>Закончили около</span><b>23:00</b></div>
   </div>
 
   <section class="reg" id="reg">
@@ -178,9 +178,9 @@ var DAY = {
   now: [
     ['09:00','work','Текущие клиенты, платёжки, звонки'],
     ['14:00','work','Сверки и первичка'],
-    ['19:40','pain','Прилетело требование ФНС на 30 листах', 'читаем приложение, ищем нормы'],
-    ['21:00','pain','Всё ещё требование', 'ужин остыл, ответ не готов'],
-    ['23:10','pain','Отправили ответ', 'завтра договор клиента и сверка КУДиР']
+    ['19:40','pain','Прилетело требование ФНС на 30 листах', 'откладываем ужин, открываем файл'],
+    ['21:00','pain','Всё ещё требование', 'вычитываем статьи НК, сверяем выписки'],
+    ['23:00','pain','Ответ сформулирован', 'вечер закончился']
   ],
   ai: [
     ['09:00','work','Текущие клиенты, платёжки, звонки'],
@@ -192,18 +192,23 @@ var DAY = {
 };
 function draw(mode){
   var rows = DAY[mode].slice();
-  if (mode === 'ai') { rows = [rows[0], rows[1], rows[2], ['19:55','free','Проверили, поправили, отправили','подпись ваша, ответственность тоже'], ['20:00','off','Ноутбук закрыт','вечер свободен']]; }
+  if (mode === 'ai') {
+    rows = [rows[0], rows[1],
+      ['19:40','free','Требование ФНС: загрузили файл','нейросеть готовит черновик ответа'],
+      ['19:55','free','Черновик готов','проверяем, правим пару строк, подпись ваша'],
+      ['вечер','off','Ноутбук закрыт','вечер остался свободным']];
+  }
   document.getElementById('day').innerHTML = rows.map(function(r){
     return '<div class="slot"><div class="hh">' + r[0] + '</div>' +
            '<div class="box ' + r[1] + '">' + r[2] + (r[3] ? '<small>' + r[3] + '</small>' : '') + '</div></div>';
   }).join('');
   var r1 = document.getElementById('r1'), r2 = document.getElementById('r2');
   if (mode === 'now') {
-    r1.className = 'res bad'; r1.innerHTML = '<span>Ноутбук закрыт</span><b>в 23:10</b>';
-    r2.className = 'res bad'; r2.innerHTML = '<span>На механике за день</span><b>5 ч 40 мин</b>';
+    r1.className = 'res bad'; r1.innerHTML = '<span>Требование заняло</span><b>весь вечер</b>';
+    r2.className = 'res bad'; r2.innerHTML = '<span>Закончили около</span><b>23:00</b>';
   } else {
-    r1.className = 'res good'; r1.innerHTML = '<span>Ноутбук закрыт</span><b>в 20:00</b>';
-    r2.className = 'res good'; r2.innerHTML = '<span>На механике за день</span><b>35 минут</b>';
+    r1.className = 'res good'; r1.innerHTML = '<span>Черновик ответа через</span><b>15 минут</b>';
+    r2.className = 'res good'; r2.innerHTML = '<span>Вечер остался</span><b>свободным</b>';
   }
 }
 document.getElementById('bNow').addEventListener('click', function(){

@@ -40,7 +40,7 @@ h1 span{color:var(--orange)}
 .calc{margin-top:26px;background:var(--card);border-radius:22px;box-shadow:0 18px 44px rgba(20,22,26,.09);overflow:hidden;text-align:left}
 .calc-head{padding:22px 26px;border-bottom:1px solid var(--line)}
 .calc-head b{font-size:18px;font-weight:800}
-.pick{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+.pick{margin-top:14px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
 .pick button{border:1.5px solid var(--line);background:#fff;color:var(--ink);font-family:inherit;font-size:16px;font-weight:700;
   padding:12px 20px;border-radius:12px;cursor:pointer;transition:.14s}
 .pick button:hover{border-color:var(--orange)}
@@ -102,7 +102,8 @@ footer{padding:28px 0 60px;font-size:13.5px;color:#868C99;text-align:center}
   .cell .val{font-size:30px}
   .reg{grid-template-columns:minmax(0,1fr);padding:20px}
   .tgrid{grid-template-columns:minmax(0,1fr)}
-  .pick button{flex:1 1 calc(50% - 10px);padding:12px 10px}
+  .pick{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pick button{padding:12px 10px}
   .bar .org{display:none}
 }
 </style>
@@ -138,22 +139,22 @@ footer{padding:28px 0 60px;font-size:13.5px;color:#868C99;text-align:center}
 
     <div class="calc-body">
       <div class="cell now">
-        <div class="lbl" id="lbl1">Уходит на рутину сейчас</div>
-        <div class="val"><span id="hoursNow">35</span> ч/мес</div>
+        <div class="lbl" id="lbl1">Ваш доход сейчас</div>
+        <div class="val"><span id="hoursNow">100 000</span> ₽</div>
         <div class="bars"><i id="barNow" style="width:45%"></i></div>
-        <div class="hint" id="h1">требования, сверки, договоры, объяснения клиентам</div>
+        <div class="hint" id="h1">при среднем чеке 20 000 ₽ за клиента</div>
       </div>
       <div class="cell free">
-        <div class="lbl" id="lbl2">Вернётся с нейросетью</div>
-        <div class="val"><span id="hoursFree">20</span> ч/мес</div>
+        <div class="lbl" id="lbl2">Вернёт нейросеть</div>
+        <div class="val"><span id="hoursFree">20</span> часов</div>
         <div class="bars"><i id="barFree" style="width:45%"></i></div>
-        <div class="hint" id="h2">механику делает она, проверяете и подписываете вы</div>
+        <div class="hint" id="h2">столько экономит команда Галины за месяц</div>
       </div>
       <div class="cell money">
-        <div class="lbl" id="lbl3">Это новые клиенты и деньги</div>
-        <div class="val">+<span id="money">40 000</span> ₽</div>
+        <div class="lbl" id="lbl3">Станет с двумя новыми клиентами</div>
+        <div class="val"><span id="money">140 000</span> ₽</div>
         <div class="bars"><i id="barMoney" style="width:50%"></i></div>
-        <div class="hint" id="h3">при чеке 20 000 ₽, это <span id="clients">2</span> клиента</div>
+        <div class="hint" id="h3">в освободившееся время помещаются ещё два клиента</div>
       </div>
     </div>
 
@@ -187,17 +188,15 @@ footer{padding:28px 0 60px;font-size:13.5px;color:#868C99;text-align:center}
         </div>
       </div>
       <div class="t">
-        <b>Сверка КУДиР за квартал</b>
+        <b>Ответ клиенту простым языком</b>
         <div class="pair">
-          <div class="line"><span>было</span><i style="width:100%"></i><b>полдня</b></div>
-          <div class="line after"><span>стало</span><i style="width:12%"></i><b>10 минут</b></div>
+          <div class="line after"><span>с ИИ</span><i style="width:10%"></i><b>2 минуты</b></div>
         </div>
       </div>
       <div class="t">
-        <b>Договор контрагента</b>
+        <b>Риски в договоре контрагента</b>
         <div class="pair">
-          <div class="line"><span>было</span><i style="width:100%"></i><b>40 минут</b></div>
-          <div class="line after"><span>стало</span><i style="width:10%"></i><b>3 минуты</b></div>
+          <div class="line after"><span>с ИИ</span><i style="width:14%"></i><b>3 минуты</b></div>
         </div>
       </div>
     </div>
@@ -219,26 +218,21 @@ footer{padding:28px 0 60px;font-size:13.5px;color:#868C99;text-align:center}
 function demo(e){ e.preventDefault(); alert('Это макет для просмотра. В рабочей версии здесь стандартная форма GetCourse.'); return false; }
 
 /* калькулятор: часы считаем от числа клиентов, возврат времени — доля механики */
-var DATA = {
-  /* нет клиентов: считаем не потерянные часы, а свободные вечера, которые можно занять работой */
-  0:  {now: 20, free: 10, clients: 2, mode: 'new'},
-  3:  {now: 21, free: 12, clients: 1},
-  5:  {now: 35, free: 20, clients: 2},
-  8:  {now: 56, free: 32, clients: 3},
-  11: {now: 77, free: 44, clients: 4}
-};
+/* Считаем только на подтверждённых цифрах: средний чек 20 000 ₽ и 20 часов, которые
+   нейросеть возвращает за месяц — этого времени хватает ещё на двух клиентов. */
+var CHEK = 20000, PLUS = 2, HOURS = 20;
 var TXT = {
   have: {
-    l1: 'Уходит на рутину сейчас',  h1: 'требования, сверки, договоры, объяснения клиентам',
-    l2: 'Вернётся с нейросетью',    h2: 'механику делает она, проверяете и подписываете вы',
-    l3: 'Это новые клиенты и деньги',
-    foot: 'Нанять помощницу — это 40 000 ₽ плюс налоги и два-три месяца обучения. <b>Эти часы не стоят ничего.</b>'
+    l1: 'Ваш доход сейчас',   h1: 'при среднем чеке 20 000 ₽ за клиента',
+    l2: 'Вернёт нейросеть',   h2: 'столько экономит команда Галины за месяц',
+    l3: 'Станет с двумя новыми клиентами', h3: 'в освободившееся время помещаются ещё два клиента',
+    foot: 'Нанять помощницу — это 40 000 ₽ плюс налоги и два-три месяца обучения. <b>Освободившиеся часы не стоят ничего.</b>'
   },
   new: {
-    l1: 'Свободных вечеров в месяц', h1: 'два-три вечера в неделю после основной работы',
-    l2: 'Нужно на одного клиента',   h2: 'с нейросетью: отчётность, первичка, ответы клиенту',
-    l3: 'Можно вести, не бросая работу',
-    foot: 'Первых клиентов берут, не увольняясь: нейросеть закрывает механику, а <b>опыт и подпись остаются вашими</b>.'
+    l1: 'Клиентов пока нет',  h1: 'доход только с основной работы',
+    l2: 'Вернёт нейросеть',   h2: 'столько экономит команда Галины за месяц',
+    l3: 'Можно вести, не бросая работу', h3: 'два первых клиента по 20 000 ₽',
+    foot: 'Первых клиентов берут, не увольняясь: механику закрывает нейросеть, а <b>опыт и подпись остаются вашими</b>.'
   }
 };
 function fmt(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
