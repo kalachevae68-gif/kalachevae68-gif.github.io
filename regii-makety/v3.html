@@ -3,160 +3,157 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Вариант 3 — «Личное приглашение» | Урок по ИИ для бухгалтеров</title>
+<title>Вариант 3 — «Письмо» | Урок по ИИ для бухгалтеров</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fs.getcourse.ru">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Inter:wght@500;700;800&display=swap">
 <style>
-/* ============ ВАРИАНТ 3 · «ЛИЧНОЕ ПРИГЛАШЕНИЕ» ============
-   Страница выглядит как письмо эксперта, а не как рекламный лендинг: крупное фото,
-   текст от первого лица, форма-карточка едет рядом. Для аудитории 40+ после статьи
-   это самый мягкий переход — продолжение разговора, а не новый баннер. */
+/* ============ ВАРИАНТ 3 · «ПИСЬМО» ============
+   Бумажная страница: кремовый фон, засечный шрифт, узкая колонка, крупная буквица.
+   Никаких карточек и плашек — только текст от первого лица и один бланк записи.
+   Расчёт на аудиторию 40+, которой ближе человек, чем рекламный блок. */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--orange:#FF8A00;--orange-dp:#F4600A;--paper:#FBF6EF;--ink:#262320;--soft:#6B6660;--line:#E8DFD2}
+:root{--paper:#F7F1E6;--paper2:#FFFDF8;--ink:#23201B;--soft:#6E675C;--rule:#E0D5C2;--orange:#D9620A}
 html{scroll-behavior:smooth}
-body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--paper);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+body{font-family:Literata,Georgia,"Times New Roman",serif;color:var(--ink);background:var(--paper);font-size:19px;line-height:1.72;-webkit-font-smoothing:antialiased}
 img{max-width:100%;height:auto;display:block}
-.wrap{width:100%;max-width:1060px;margin:0 auto;padding:0 20px}
+.sheet{max-width:760px;margin:0 auto;padding:0 22px}
+.ui{font-family:Inter,system-ui,Arial,sans-serif}
 
-.top{background:#fff;border-bottom:1px solid var(--line);padding:12px 0;font-size:14.5px;color:var(--soft);text-align:center}
-.top b{color:var(--ink)}
+/* шапка-бланк */
+.head{border-bottom:1px solid var(--rule);padding:18px 0;text-align:center}
+.head .org{font-family:Inter,sans-serif;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft)}
+.head .when{margin-top:7px;font-family:Inter,sans-serif;font-size:14.5px;font-weight:700}
+.head .when b{color:var(--orange)}
 
-.letter{padding:36px 0 50px}
-.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:46px;align-items:start}
+.letter{padding:40px 0 10px}
+.date{font-family:Inter,sans-serif;font-size:13.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+h1{margin-top:16px;font-size:clamp(29px,4.4vw,46px);line-height:1.18;font-weight:700;letter-spacing:-.015em}
+h1 em{font-style:italic;color:var(--orange)}
+.letter p{margin-top:20px}
+.letter p.lede::first-letter{font-size:66px;float:left;line-height:.82;padding:6px 12px 0 0;color:var(--orange);font-weight:700}
+.letter p b{font-weight:700}
 
-.photo{border-radius:24px;overflow:hidden;background:linear-gradient(160deg,#FFE7C6,#FFCE94);max-width:300px;margin-bottom:26px}
-.from{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);font-weight:800}
-h1{margin-top:14px;font-size:clamp(28px,3.4vw,42px);line-height:1.15;font-weight:800;letter-spacing:-.02em}
-h1 em{font-style:normal;color:var(--orange-dp)}
-.letter p{margin-top:18px;max-width:640px}
-.letter p.first::first-letter{font-size:52px;float:left;line-height:.9;padding:4px 10px 0 0;color:var(--orange-dp);font-weight:900}
-.letter b{font-weight:800}
-.list{margin-top:22px;max-width:640px;border-left:3px solid var(--orange);padding-left:20px}
-.list div{margin-bottom:14px}
-.list div b{display:block;font-size:18px}
-.list div span{color:var(--soft);font-size:16.5px}
-.sign{margin-top:28px;display:flex;align-items:center;gap:14px}
-.sign img{width:62px;height:62px;border-radius:50%;object-fit:cover;object-position:50% 12%;background:#FFB040}
-.sign div b{display:block;font-size:17px}
-.sign div span{font-size:14.5px;color:var(--soft)}
-.ps{margin-top:26px;background:#fff;border:1px dashed var(--orange);border-radius:16px;padding:18px 20px;max-width:640px;font-size:16.5px}
-.ps b{color:var(--orange-dp)}
+/* фото как вклейка с подписью */
+figure{margin:32px 0;border:1px solid var(--rule);background:var(--paper2);padding:12px}
+figure img{width:100%;border-radius:2px}
+figcaption{margin-top:10px;font-family:Inter,sans-serif;font-size:13.5px;color:var(--soft);text-align:center}
 
-/* карточка формы, едет рядом */
-.side{position:sticky;top:20px}
-.card{background:#fff;border-radius:22px;padding:26px 24px;box-shadow:0 20px 50px rgba(90,60,25,.14);border-top:5px solid var(--orange)}
-.card h2{font-size:21px;font-weight:900;line-height:1.25}
-.meta{margin:10px 0 18px;font-size:15.5px;color:var(--soft)}
-.meta b{color:var(--ink)}
-.f-input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:15px 16px;font-family:inherit;font-size:16.5px;margin-bottom:10px;background:#FFFDFA}
-.f-input:focus{outline:0;border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,138,0,.16)}
-.btn{display:block;width:100%;border:0;cursor:pointer;font-family:inherit;font-weight:800;font-size:17.5px;color:#fff;background:var(--orange);
-  border-radius:14px;padding:18px;box-shadow:0 12px 26px rgba(244,96,10,.28);transition:.16s}
-.btn:hover{background:var(--orange-dp);transform:translateY(-1px)}
-.small{margin-top:12px;font-size:13px;color:var(--soft);text-align:center}
-.gift{margin-top:16px;background:var(--paper);border-radius:12px;padding:12px 14px;font-size:14.5px;line-height:1.5}
+/* перечень в письме */
+.items{margin:26px 0;padding-left:0;list-style:none}
+.items li{position:relative;padding-left:40px;margin-bottom:16px}
+.items li::before{counter-increment:n;content:counter(n);position:absolute;left:0;top:3px;width:26px;height:26px;border:1px solid var(--orange);
+  color:var(--orange);border-radius:50%;font-family:Inter,sans-serif;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.items{counter-reset:n}
+.items li b{display:block}
+.items li span{color:var(--soft);font-size:17.5px}
 
-.facts{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0}
-.facts-grid{display:flex;gap:40px;flex-wrap:wrap;justify-content:center;text-align:center}
-.facts b{display:block;font-size:26px;font-weight:900;color:var(--orange-dp);line-height:1.1}
-.facts span{font-size:14.5px;color:var(--soft)}
+/* цитата-врезка */
+blockquote{margin:30px 0;padding:22px 24px;background:var(--paper2);border-left:3px solid var(--orange);font-style:italic;font-size:20px}
 
-.final{padding:44px 0 56px;text-align:center}
-.final h2{font-size:clamp(23px,2.8vw,32px);font-weight:900;line-height:1.2}
-.final p{margin:12px auto 22px;max-width:560px;color:var(--soft)}
-.final .card{max-width:420px;margin:0 auto;text-align:left}
-footer{padding:0 0 40px;font-size:13.5px;color:#8B9099;text-align:center}
-.demo{position:fixed;left:12px;bottom:12px;z-index:9;background:var(--ink);color:#fff;font-size:12.5px;padding:8px 12px;border-radius:10px;opacity:.9}
+/* подпись */
+.sign{margin-top:34px;display:flex;align-items:center;gap:16px;border-top:1px solid var(--rule);padding-top:22px}
+.sign img{width:70px;height:70px;border-radius:50%;object-fit:cover;object-position:50% 12%}
+.sign .nm{font-family:Inter,sans-serif}
+.sign .nm b{display:block;font-size:17px}
+.sign .nm span{font-size:14px;color:var(--soft)}
+
+/* бланк записи */
+.form-sheet{margin:38px 0 10px;border:1px solid var(--ink);background:var(--paper2);padding:28px 26px}
+.form-sheet h2{font-family:Inter,sans-serif;font-size:20px;font-weight:800;letter-spacing:-.01em}
+.form-sheet .meta{font-family:Inter,sans-serif;margin:8px 0 18px;font-size:15px;color:var(--soft)}
+.form-sheet .meta b{color:var(--ink)}
+.f-input{width:100%;border:0;border-bottom:1px solid var(--rule);background:transparent;padding:13px 2px;font-family:Inter,sans-serif;font-size:16.5px;margin-bottom:12px}
+.f-input:focus{outline:0;border-bottom-color:var(--orange)}
+.btn{display:block;width:100%;border:0;cursor:pointer;font-family:Inter,sans-serif;font-weight:800;font-size:17.5px;color:#fff;background:var(--orange);
+  padding:17px;border-radius:2px;margin-top:8px;transition:.15s}
+.btn:hover{background:#C05608}
+.form-sheet .small{font-family:Inter,sans-serif;margin-top:11px;font-size:12.5px;color:var(--soft);text-align:center}
+.ps{margin-top:26px;font-size:18px;color:var(--soft)}
+.ps b{color:var(--ink)}
+
+/* подвал-полоса с цифрами */
+.facts{margin-top:40px;border-top:1px solid var(--rule);padding:26px 0 46px;display:flex;gap:30px;flex-wrap:wrap;justify-content:center;font-family:Inter,sans-serif;text-align:center}
+.facts b{display:block;font-size:22px;font-weight:800;color:var(--orange)}
+.facts span{font-size:13.5px;color:var(--soft)}
+footer{padding:0 0 50px;font-family:Inter,sans-serif;font-size:13px;color:#8C8477;text-align:center}
+.demo{position:fixed;left:12px;bottom:12px;z-index:9;background:var(--ink);color:#fff;font-family:Inter,sans-serif;font-size:12.5px;padding:8px 12px;border-radius:4px;opacity:.92}
 
 @media (max-width:900px){
-  body{font-size:17px}
-  .grid{grid-template-columns:minmax(0,1fr);gap:24px}
-  .side{position:static;order:-1}
-  .photo{max-width:100%;margin-bottom:18px}
-  h1{font-size:clamp(25px,6.4vw,34px)}
-  .letter{padding:22px 0 36px}
-  .facts-grid{gap:22px}
+  body{font-size:18px;line-height:1.68}
+  .letter{padding:26px 0 6px}
+  h1{font-size:clamp(26px,7vw,34px)}
+  .letter p.lede::first-letter{font-size:52px}
+  blockquote{font-size:18px;padding:18px 18px}
+  .form-sheet{padding:20px 18px}
+  .facts{gap:18px}
 }
 </style>
 </head>
 <body>
 
-<div class="top">Вы пришли из статьи о нейросетях для бухгалтера. <b>Ниже — приглашение от Галины Волковой на живой урок</b></div>
+<div class="head">
+  <div class="org">Бухгалтер на миллион</div>
+  <div class="when">Бесплатный онлайн-урок сегодня в <b class="lp-time">13:00</b> мск</div>
+</div>
 
-<section class="letter">
-  <div class="wrap grid">
-    <div>
-      <div class="photo">
-        <img src="https://fs.getcourse.ru/fileservice/file/download/a/449416/sc/0/h/0bbd4c92b0af870f69eddca08b00c009.webp" width="853" height="953" alt="Галина Волкова">
-      </div>
-      <div class="from">Письмо от Галины Волковой</div>
-      <h1>Покажу, как я сама использую ИИ в работе <em>своей бухгалтерской компании</em></h1>
+<article class="sheet letter">
+  <div class="date">Письмо от Галины Волковой</div>
+  <h1>Я сама упиралась в этот потолок. <em>Пока не взяла сотрудника, которому не плачу</em></h1>
 
-      <p class="first">Я бухгалтер с 27‑летним стажем, у меня своя компания: 200 с лишним клиентов и 20 сотрудников. Нейросети я внедряла не из любопытства, а потому что команда тонула в рутине, а брать новых клиентов было уже некуда.</p>
-      <p>За последний год мы перевели на ИИ часть работы, которую раньше делали руками: разбор больших выгрузок, подготовку ответов на требования, проверку договоров перед консультацией. Это не «умный помощник вместо бухгалтера». Это как калькулятор: считает он, отвечает всё равно специалист.</p>
-      <p>На бесплатном уроке я открою свои рабочие инструменты и покажу всё прямо в эфире, на живых задачах:</p>
+  <p class="lede">Коллеги, давайте честно. Одиннадцать клиентов на обслуживании — и двенадцатого брать уже некуда. Не потому что лень, а потому что вечер снова уходит на требование из налоговой на десяти листах.</p>
 
-      <div class="list">
-        <div><b>КУДиР и большие выгрузки</b><span>как за минуты получить список операций, которые стоит проверить руками</span></div>
-        <div><b>Требование из налоговой</b><span>как собрать нормы и основу ответа, не теряя вечер в поиске</span></div>
-        <div><b>Договор клиента</b><span>как быстро увидеть риски и превратить это в платную консультацию</span></div>
-        <div><b>Освободившееся время</b><span>куда его направить, чтобы выросли доход и чек, а не только объём работы</span></div>
-      </div>
+  <p>Логично нанять помощницу. Но она просит сорок тысяч плюс налоги, а первые два-три месяца вы будете её учить и проверять. Из девяноста тысяч у вас останется сорок. Поэтому почти все решают: потяну сама. И остаются в колесе.</p>
 
-      <p>Урок бесплатный, идёт один раз и в прямом эфире, записи не будет. Приходите с вопросами, отвечу лично.</p>
+  <p>Я бухгалтер с 27-летним стажем, у меня своя аутсорсинговая компания: двадцать сотрудников и оборот больше сорока миллионов в год. Главную рутину в ней забирает тот, кому я не плачу ни копейки.</p>
 
-      <div class="sign">
-        <img src="https://fs.getcourse.ru/fileservice/file/download/a/449416/sc/0/h/900fe97b5565239f1dd74593a29c2e52.webp" width="62" height="62" alt="Галина Волкова">
-        <div><b>Галина Волкова</b><span>эксперт школы «Бухгалтер на миллион»</span></div>
-      </div>
+  <figure>
+    <img src="https://fs.getcourse.ru/fileservice/file/download/a/449416/sc/0/h/0bbd4c92b0af870f69eddca08b00c009.webp" width="853" height="953" alt="Галина Волкова за работой">
+    <figcaption>Галина Волкова, собственник бухгалтерской компании</figcaption>
+  </figure>
 
-      <div class="ps"><b>P. S.</b> Сразу после регистрации пришлю гайд «5 промтов для бухгалтера» — его можно попробовать ещё до урока.</div>
-    </div>
+  <p>Раньше над требованием мы сидели по три часа, сверяя каждую запятую. Сейчас я загружаю файл, через пятнадцать минут у меня черновик ответа, я пробегаю его глазами, правлю пару строк и отправляю. За месяц такие задачи экономят мне и сотрудникам около двадцати часов. При среднем чеке двадцать тысяч это два новых клиента и сорок тысяч сверху, которые остаются вам, а не помощнице.</p>
 
-    <aside class="side">
-      <div class="card">
-        <h2>Записаться на урок</h2>
-        <div class="meta">Сегодня в <b class="lp-time">13:00</b> мск · онлайн · бесплатно</div>
-        <form onsubmit="return demo(event)">
-          <input class="f-input" placeholder="Ваше имя">
-          <input class="f-input" placeholder="Ваш email">
-          <input class="f-input" placeholder="Номер телефона">
-          <button class="btn" type="submit">Получить ссылку на урок</button>
-        </form>
-        <div class="small">Регистрация и участие ни к чему не обязывают</div>
-        <div class="gift">🎁 Гайд «5 промтов для бухгалтера» придёт сразу после регистрации</div>
-      </div>
-    </aside>
+  <p>На бесплатном уроке я просто открою свой экран и покажу это вживую:</p>
+
+  <ul class="items">
+    <li><b>Требование из налоговой</b><span>как из тридцати страниц приложения за минуты получить структуру ответа и список документов</span></li>
+    <li><b>Договор контрагента</b><span>как увидеть налоговые риски и превратить проверку в платную консультацию</span></li>
+    <li><b>Сверка КУДиР</b><span>как пройти большой объём операций и получить список того, что проверить руками</span></li>
+    <li><b>Освободившиеся часы</b><span>куда их направить, чтобы вырос доход, а не только количество работы</span></li>
+  </ul>
+
+  <p>Слышу возражение: «мне за пятьдесят, я не программист». Я тоже не программист. С нейросетью не нужно писать код, с ней нужно разговаривать по-русски, и здесь ваш двадцатилетний опыт работает на вас. Ни ВПН, ни иностранных карт не понадобится.</p>
+
+  <blockquote>Вы — главный бухгалтер, который ставит задачу и отвечает за результат. Он — быстрые руки. Подпись всегда ваша.</blockquote>
+
+  <p>Приходите с вопросами, отвечу лично. Урок бесплатный, идёт один раз, записи не будет.</p>
+
+  <div class="sign">
+    <img src="https://fs.getcourse.ru/fileservice/file/download/a/449416/sc/0/h/900fe97b5565239f1dd74593a29c2e52.webp" width="70" height="70" alt="Галина Волкова">
+    <div class="nm"><b>Галина Волкова</b><span>эксперт школы «Бухгалтер на миллион»</span></div>
   </div>
-</section>
 
-<section class="facts">
-  <div class="wrap facts-grid">
-    <div><b>27+ лет</b><span>в бухгалтерии</span></div>
-    <div><b>200+</b><span>клиентов на обслуживании</span></div>
-    <div><b>20</b><span>сотрудников в команде</span></div>
-    <div><b>40+ млн ₽</b><span>оборот компании за год</span></div>
-  </div>
-</section>
+  <form class="form-sheet" onsubmit="return demo(event)">
+    <h2>Записаться на урок</h2>
+    <div class="meta">Сегодня в <b class="lp-time">13:00</b> мск · онлайн · бесплатно</div>
+    <input class="f-input" placeholder="Имя">
+    <input class="f-input" placeholder="Email">
+    <input class="f-input" placeholder="Телефон">
+    <button class="btn" type="submit">Получить ссылку на урок</button>
+    <div class="small">Регистрация и участие ни к чему не обязывают</div>
+  </form>
 
-<section class="final">
-  <div class="wrap">
-    <h2>Увидимся в эфире</h2>
-    <p>Оставьте почту, пришлю ссылку и напоминание перед началом.</p>
-    <div class="card">
-      <h2>Сегодня в <span class="lp-time">13:00</span> мск</h2>
-      <div class="meta">Урок идёт один раз, записи не будет</div>
-      <form onsubmit="return demo(event)">
-        <input class="f-input" placeholder="Ваше имя">
-        <input class="f-input" placeholder="Ваш email">
-        <input class="f-input" placeholder="Номер телефона">
-        <button class="btn" type="submit">Зарегистрироваться бесплатно</button>
-      </form>
-    </div>
+  <p class="ps"><b>P. S.</b> Сразу после регистрации пришлю гайд «5 промтов для бухгалтера» — его можно попробовать ещё до эфира.</p>
+
+  <div class="facts">
+    <div><b>27 лет</b><span>в бухгалтерии</span></div>
+    <div><b>20 человек</b><span>в команде</span></div>
+    <div><b>40+ млн ₽</b><span>оборот компании</span></div>
+    <div><b>20 часов</b><span>экономии в месяц</span></div>
   </div>
-</section>
+</article>
 
 <footer>Макет для теста. Бухгалтер на миллион</footer>
 <div class="demo">Тестовый макет: форма не отправляет данные</div>
