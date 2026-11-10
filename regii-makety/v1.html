@@ -126,8 +126,9 @@ footer{padding:28px 0 60px;font-size:13.5px;color:#868C99;text-align:center}
 
   <div class="calc">
     <div class="calc-head">
-      <b>Сколько у вас клиентов на обслуживании?</b>
+      <b>Сколько клиентов вы ведёте сейчас?</b>
       <div class="pick">
+        <button data-c="0">Пока нет</button>
         <button data-c="3">3</button>
         <button data-c="5" class="on">5</button>
         <button data-c="8">8</button>
@@ -137,26 +138,26 @@ footer{padding:28px 0 60px;font-size:13.5px;color:#868C99;text-align:center}
 
     <div class="calc-body">
       <div class="cell now">
-        <div class="lbl">Уходит на рутину сейчас</div>
+        <div class="lbl" id="lbl1">Уходит на рутину сейчас</div>
         <div class="val"><span id="hoursNow">35</span> ч/мес</div>
         <div class="bars"><i id="barNow" style="width:45%"></i></div>
-        <div class="hint">требования, сверки, договоры, объяснения клиентам</div>
+        <div class="hint" id="h1">требования, сверки, договоры, объяснения клиентам</div>
       </div>
       <div class="cell free">
-        <div class="lbl">Вернётся с нейросетью</div>
+        <div class="lbl" id="lbl2">Вернётся с нейросетью</div>
         <div class="val"><span id="hoursFree">20</span> ч/мес</div>
         <div class="bars"><i id="barFree" style="width:45%"></i></div>
-        <div class="hint">механику делает она, проверяете и подписываете вы</div>
+        <div class="hint" id="h2">механику делает она, проверяете и подписываете вы</div>
       </div>
       <div class="cell money">
-        <div class="lbl">Это новые клиенты и деньги</div>
+        <div class="lbl" id="lbl3">Это новые клиенты и деньги</div>
         <div class="val">+<span id="money">40 000</span> ₽</div>
         <div class="bars"><i id="barMoney" style="width:50%"></i></div>
-        <div class="hint">при чеке 20 000 ₽, это <span id="clients">2</span> клиента</div>
+        <div class="hint" id="h3">при чеке 20 000 ₽, это <span id="clients">2</span> клиента</div>
       </div>
     </div>
 
-    <div class="calc-foot">Нанять помощницу — это 40 000 ₽ плюс налоги и два-три месяца обучения. <b>Эти часы не стоят ничего.</b></div>
+    <div class="calc-foot" id="foot">Нанять помощницу — это 40 000 ₽ плюс налоги и два-три месяца обучения. <b>Эти часы не стоят ничего.</b></div>
   </div>
 </header>
 
@@ -219,17 +220,40 @@ function demo(e){ e.preventDefault(); alert('Это макет для просм
 
 /* калькулятор: часы считаем от числа клиентов, возврат времени — доля механики */
 var DATA = {
+  /* нет клиентов: считаем не потерянные часы, а свободные вечера, которые можно занять работой */
+  0:  {now: 20, free: 10, clients: 2, mode: 'new'},
   3:  {now: 21, free: 12, clients: 1},
   5:  {now: 35, free: 20, clients: 2},
   8:  {now: 56, free: 32, clients: 3},
   11: {now: 77, free: 44, clients: 4}
 };
+var TXT = {
+  have: {
+    l1: 'Уходит на рутину сейчас',  h1: 'требования, сверки, договоры, объяснения клиентам',
+    l2: 'Вернётся с нейросетью',    h2: 'механику делает она, проверяете и подписываете вы',
+    l3: 'Это новые клиенты и деньги',
+    foot: 'Нанять помощницу — это 40 000 ₽ плюс налоги и два-три месяца обучения. <b>Эти часы не стоят ничего.</b>'
+  },
+  new: {
+    l1: 'Свободных вечеров в месяц', h1: 'два-три вечера в неделю после основной работы',
+    l2: 'Нужно на одного клиента',   h2: 'с нейросетью: отчётность, первичка, ответы клиенту',
+    l3: 'Можно вести, не бросая работу',
+    foot: 'Первых клиентов берут, не увольняясь: нейросеть закрывает механику, а <b>опыт и подпись остаются вашими</b>.'
+  }
+};
 function fmt(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
 function render(c){
   var d = DATA[c];
+  var t = TXT[d.mode === 'new' ? 'new' : 'have'];
+  document.getElementById('lbl1').textContent = t.l1;
+  document.getElementById('lbl2').textContent = t.l2;
+  document.getElementById('lbl3').textContent = t.l3;
+  document.getElementById('h1').textContent = t.h1;
+  document.getElementById('h2').textContent = t.h2;
+  document.getElementById('foot').innerHTML = t.foot;
+  document.getElementById('h3').innerHTML = 'при чеке 20 000 ₽, это <span id="clients">' + d.clients + '</span> клиента';
   document.getElementById('hoursNow').textContent = d.now;
   document.getElementById('hoursFree').textContent = d.free;
-  document.getElementById('clients').textContent = d.clients;
   document.getElementById('money').textContent = fmt(d.clients * 20000);
   document.getElementById('barNow').style.width = Math.round(d.now / 77 * 100) + '%';
   document.getElementById('barFree').style.width = Math.round(d.free / 44 * 100) + '%';
