@@ -1,0 +1,292 @@
+<!-- Макет посадочной воронки ИИ. Вставляется целиком в один блок «HTML-код» GetCourse. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fs.getcourse.ru">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+<style>
+/* ===== Обёртка GetCourse: HTML-блок на всю ширину страницы ===== */
+.lt-block:has(.lp-ii4) > .lt-block-wrapper{padding:0 !important;background:none !important}
+.lt-block:has(.lp-ii4) .container{width:100% !important;max-width:none !important;padding-left:0 !important;padding-right:0 !important}
+.lt-block:has(.lp-ii4) .row{margin-left:0 !important;margin-right:0 !important}
+.lt-block:has(.lp-ii4) [class*="col-"]{width:100% !important;float:none !important;padding-left:0 !important;padding-right:0 !important}
+.lp-ii4 a:hover,.lp-ii4 a:focus{text-decoration:none}
+/* GetCourse задаёт заголовкам свои отступы — снимаем их той же силой селектора */
+.lp-ii4 h1,.lp-ii4 h2,.lp-ii4 h3,.lp-ii4 h4,.lp-ii4 h5,.lp-ii4 h6{margin:0}
+.lp-ii4 .lead{font-weight:400}
+.lp-ii4 b,.lp-ii4 strong{font-weight:700}
+
+.lp-ii4 /* ============ ВАРИАНТ 4 · «КАК СЕЙЧАС, .lp-ii4 НО КОРОЧЕ» ============
+   Тот же визуальный язык, .lp-ii4 что у боевой страницы: кремовый фон, .lp-ii4 оранжевые акценты, .lp-ii4 белые карточки, .lp-ii4 фото Галины в первом экране. Отличие одно — длина:
+   первый экран с формой, .lp-ii4 четыре пункта программы, .lp-ii4 подарки, .lp-ii4 эксперт, .lp-ii4 финал. Всё.
+   Нужен, .lp-ii4 чтобы отдельно проверить гипотезу «страница просто слишком длинная». */
+*, .lp-ii4 *::before, .lp-ii4 *::after{box-sizing:border-box;margin:0;padding:0}
+.lp-ii4{--orange:#FF8A00;--orange-dp:#F4600A;--cream:#FFF5EC;--ink:#26282E;--soft:#5C6069;--line:#F0E3D4}
+html{scroll-behavior:smooth}
+.lp-ii4{font-family:Inter,system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:#fff;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.lp-ii4 img{max-width:100%;height:auto;display:block}
+.lp-ii4 .wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
+.lp-ii4 /* первый экран */
+.hero{background:radial-gradient(75% 90% at 78% 8%,#FFE9CE,transparent 70%),var(--cream);padding:30px 0 40px;overflow:hidden}
+.lp-ii4 .hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:40px;align-items:center}
+.lp-ii4 .tag{display:inline-block;max-width:100%;background:#fff;border:1px solid #F3DDBF;color:var(--orange-dp);font-size:12.5px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;border-radius:999px}
+.lp-ii4 h1{margin-top:18px;font-size:clamp(28px,3.6vw,46px);line-height:1.1;font-weight:900;letter-spacing:-.025em}
+.lp-ii4 h1 span{color:var(--orange-dp)}
+.lp-ii4 .sub{margin-top:14px;font-size:18px;color:var(--soft);max-width:520px}
+.lp-ii4 .meta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+.lp-ii4 .meta span{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:15px;font-weight:700;white-space:nowrap}
+.lp-ii4 .meta span b{color:var(--orange-dp)}
+.lp-ii4 .photo{margin-top:20px;max-width:300px}
+.lp-ii4 .photo img{filter:drop-shadow(0 18px 34px rgba(170,90,10,.22))}
+.lp-ii4 /* карточка формы */
+.card{background:#fff;border-radius:22px;padding:28px 26px;border-top:6px solid var(--orange);box-shadow:0 22px 54px rgba(150,90,20,.16)}
+.lp-ii4 .card h2{font-size:22px;font-weight:900;line-height:1.2}
+.lp-ii4 .card .free{margin:8px 0 18px;font-size:15px;color:var(--soft)}
+.lp-ii4 .f-input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:15px 16px;font-family:inherit;font-size:16.5px;margin-bottom:11px;background:#FFFDFA}
+.lp-ii4 .f-input:focus{outline:0;border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,138,0,.15)}
+.lp-ii4 .btn{display:block;width:100%;border:0;cursor:pointer;font-family:inherit;font-weight:800;font-size:18px;color:#fff;background:var(--orange);
+  border-radius:14px;padding:18px;box-shadow:0 12px 26px rgba(244,96,10,.3);transition:.16s}
+.lp-ii4 .btn:hover{background:var(--orange-dp);transform:translateY(-1px)}
+.lp-ii4 .small{margin-top:11px;font-size:12.5px;color:var(--soft);text-align:center}
+.lp-ii4 .gift{margin-top:14px;background:var(--cream);border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.45;display:flex;gap:9px}
+.lp-ii4 /* программа */
+.sec{padding:46px 0}
+.lp-ii4 .h2{font-size:clamp(23px,2.9vw,34px);font-weight:900;letter-spacing:-.02em;line-height:1.14;text-align:center}
+.lp-ii4 .lead{margin:12px auto 0;color:var(--soft);text-align:center;max-width:620px}
+.lp-ii4 .grid4{margin-top:26px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.lp-ii4 .item{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;gap:16px;align-items:flex-start}
+.lp-ii4 .item .n{flex:none;width:40px;height:40px;border-radius:12px;background:var(--cream);color:var(--orange-dp);font-weight:900;
+  display:flex;align-items:center;justify-content:center}
+.lp-ii4 .item b{font-size:17.5px;display:block}
+.lp-ii4 .item p{margin-top:5px;color:var(--soft);font-size:16px}
+.lp-ii4 /* подарки */
+.gifts{background:var(--cream);padding:40px 0}
+.lp-ii4 .gifts-grid{margin-top:22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.lp-ii4 .g{background:#fff;border-radius:18px;padding:20px}
+.lp-ii4 .g .lbl{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-dp)}
+.lp-ii4 .g b{display:block;margin-top:8px;font-size:17px}
+.lp-ii4 .g span{display:block;margin-top:6px;color:var(--soft);font-size:15px}
+.lp-ii4 /* эксперт */
+.ex{padding:38px 0}
+.lp-ii4 .ex-box{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}
+.lp-ii4 .ex-box img{width:110px;height:110px;border-radius:50%;object-fit:cover;object-position:50% 12%;background:#FFD9AB}
+.lp-ii4 .ex-box b{font-size:20px}
+.lp-ii4 .ex-box p{margin-top:6px;color:var(--soft);font-size:16px}
+.lp-ii4 .nums{margin-top:12px;display:flex;gap:22px;flex-wrap:wrap}
+.lp-ii4 .nums div b{display:block;font-size:19px;color:var(--orange-dp)}
+.lp-ii4 .nums div span{font-size:13.5px;color:var(--soft)}
+.lp-ii4 /* финал */
+.final{background:radial-gradient(60% 80% at 85% 20%,rgba(255,138,0,.3),transparent 70%),#1E1F24;color:#fff;padding:46px 0}
+.lp-ii4 .final-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:34px;align-items:center}
+.lp-ii4 .final h2{font-size:clamp(23px,2.9vw,34px);font-weight:900;line-height:1.14}
+.lp-ii4 .final p{margin-top:12px;color:#C6C8CF}
+.lp-ii4 footer{padding:26px 0 60px;font-size:13.5px;color:#8B9099;text-align:center}
+.lp-ii4 .demo{position:fixed;left:12px;bottom:12px;z-index:9;background:var(--ink);color:#fff;font-size:12.5px;padding:8px 12px;border-radius:10px;opacity:.92}
+
+@media (max-width:900px){
+.lp-ii4 .hero{padding:18px 0 26px}
+.lp-ii4 .tag{font-size:11px;letter-spacing:.06em;padding:8px 13px}
+.lp-ii4 .meta span{font-size:14px;padding:9px 12px}
+.lp-ii4 .hero-grid, .lp-ii4 .final-grid{grid-template-columns:minmax(0,1fr);gap:18px}
+.lp-ii4 .photo{display:none}
+.lp-ii4 h1{font-size:clamp(24px,6.4vw,33px);margin-top:12px}
+.lp-ii4 .sub{font-size:16px}
+.lp-ii4 .card{padding:20px 18px}
+.lp-ii4 .sec{padding:32px 0}
+.lp-ii4 .grid4, .lp-ii4 .gifts-grid{grid-template-columns:minmax(0,1fr)}
+.lp-ii4 .ex-box{grid-template-columns:76px minmax(0,1fr);padding:18px}
+.lp-ii4 .ex-box img{width:76px;height:76px}
+}
+
+.lp-ii4 .lp-jump{display:block;text-align:center;background:#FF8A00;color:#fff;text-decoration:none;
+  font-weight:800;font-size:17.5px;padding:17px 20px;border-radius:14px;transition:background .16s}
+.lp-ii4 .lp-jump:hover{background:#F4600A;color:#fff}
+
+/* ===== Стандартная форма GetCourse внутри макета ===== */
+.lp-ii4 .gc-form-slot{width:100%}
+.lp-ii4 .gc-form-slot .modal-block-content,.lp-ii4 .gc-form-slot form,.lp-ii4 .gc-form-slot .lt-form,.lp-ii4 .gc-form-slot .form-content,.lp-ii4 .gc-form-slot .builder{width:100% !important;max-width:none !important;float:none !important;margin:0 !important;padding:0 !important;background:none !important;border:0 !important;border-radius:0 !important;box-shadow:none !important}
+.lp-ii4 .gc-form-slot .builder-item{display:block;width:100% !important;float:none !important;margin:0 0 10px !important;padding:0 !important;background:none !important;border:0 !important;box-shadow:none !important;text-align:left !important}
+.lp-ii4 .gc-form-slot .builder-item.hidden,.lp-ii4 .gc-form-slot .hidden,.lp-ii4 .gc-form-slot .price-block,.lp-ii4 .gc-form-slot .add-redesign-subblock,.lp-ii4 .gc-form-slot .common-setting-link{display:none !important}
+.lp-ii4 .gc-form-slot .f-input{display:block;width:100% !important;height:auto !important;margin:0 !important;border:1.5px solid #F0E3D4 !important;border-radius:14px !important;background:#FFFDFA !important;padding:15px !important;color:#26282E !important;font:500 16px/1.3 Inter,Arial,sans-serif !important;box-shadow:none !important;outline:0 !important}
+.lp-ii4 .gc-form-slot .f-input:focus{border-color:#FF8A00 !important;box-shadow:0 0 0 3px rgba(255,138,0,.16) !important}
+.lp-ii4 .gc-form-slot .f-input::placeholder{color:#9A9DA4 !important;opacity:1}
+.lp-ii4 .gc-form-slot .part-button{margin:6px 0 0 !important}
+.lp-ii4 .gc-form-slot button,.lp-ii4 .gc-form-slot .btn,.lp-ii4 .gc-form-slot .f-btn{display:block !important;width:100% !important;height:auto !important;margin:0 !important;padding:17px 20px !important;border:0 !important;border-radius:14px !important;background:#FF8A00 !important;color:#fff !important;font:800 17.5px/1.2 Inter,Arial,sans-serif !important;text-transform:none !important;letter-spacing:0 !important;white-space:normal !important;cursor:pointer;transition:background .16s}
+.lp-ii4 .gc-form-slot button:hover,.lp-ii4 .gc-form-slot .btn:hover,.lp-ii4 .gc-form-slot .f-btn:hover{background:#F4600A !important}
+.lp-ii4 .gc-form-slot .chb,.lp-ii4 .gc-form-slot .checkbox-label,.lp-ii4 .gc-form-slot .part-html,.lp-ii4 .gc-form-slot label{font:400 12.5px/1.45 Inter,Arial,sans-serif !important;color:#6B6B76 !important;text-align:left !important;margin:0 !important}
+.lp-ii4 .gc-form-slot .checkbox-label{display:flex !important;gap:8px;align-items:flex-start;margin:0 0 6px !important;cursor:pointer}
+.lp-ii4 .gc-form-slot input[type="checkbox"]{position:static !important;opacity:1 !important;-webkit-appearance:checkbox !important;appearance:auto !important;flex:none;width:15px !important;height:15px !important;margin:1px 0 0 !important;accent-color:#FF8A00}
+.lp-ii4 .gc-form-slot .form-result-block{font:500 15px/1.5 Inter,Arial,sans-serif;color:#26282E}
+
+</style>
+<div class="lp-ii4">
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">Бесплатный открытый урок для бухгалтеров</span>
+      <h1>Как бухгалтеру зарабатывать больше, <span>используя ИИ в работе</span></h1>
+      <p class="sub">Без переработок и сложных технологий. Галина Волкова откроет свой экран и покажет на реальных задачах: требование ФНС, договор, сверка КУДиР.</p>
+      <div class="meta">
+        <span>Сегодня в <b class="lp-time">13:00</b> мск</span>
+        <span>Онлайн</span>
+        <span>Бесплатно</span>
+      </div>
+      <div class="photo">
+        <img src="https://fs.getcourse.ru/fileservice/file/download/a/449416/sc/0/h/643dd4694d251ee5ac88356c7a686822.webp" width="522" height="870" alt="Галина Волкова">
+      </div>
+    </div>
+
+    <div class="card" id="lp-reg"><h2>Зарегистрируйтесь бесплатно</h2>
+      <div class="free">Урок идёт один раз, записи не будет</div>
+      <div class="gc-form-slot"><!-- сюда переносится форма GetCourse --></div>
+      
+      
+      
+      <div class="small">Регистрация и участие ни к чему не обязывают</div>
+      <div class="gift"><span>🎁</span><span>Сразу после регистрации — гайд <b>«5 промтов для бухгалтера»</b></span></div></div>
+  </div>
+</header>
+
+<section class="wrap sec">
+  <h2 class="h2">Что покажем на уроке</h2>
+  <p class="lead">Не обзор нейросетей, а рабочие сценарии бухгалтера с демонстрацией прямо в эфире.</p>
+  <div class="grid4">
+    <div class="item"><div class="n">1</div><div><b>Требование из налоговой</b><p>Как из приложения на 30 листах за минуты получить структуру ответа и список документов.</p></div></div>
+    <div class="item"><div class="n">2</div><div><b>Разбор КУДиР и больших выгрузок</b><p>Что из тысячи операций действительно нужно проверить руками.</p></div></div>
+    <div class="item"><div class="n">3</div><div><b>Проверка договора и консультация</b><p>Риски, аргументы и основа ответа клиенту — быстрее, чем при ручном поиске.</p></div></div>
+    <div class="item"><div class="n">4</div><div><b>Как это превращается в доход</b><p>20 освободившихся часов в месяц — это ещё два клиента по 20 000 ₽.</p></div></div>
+  </div>
+</section>
+
+<section class="gifts">
+  <div class="wrap">
+    <h2 class="h2">Заберёте с собой</h2>
+    <div class="gifts-grid">
+      <div class="g"><div class="lbl">Сразу после регистрации</div><b>Гайд «5 промтов для бухгалтера»</b><span>Готовые запросы, которые можно попробовать ещё до эфира.</span></div>
+      <div class="g"><div class="lbl">Подарок участникам</div><b>Карта нейросетей для бухгалтера</b><span>Какую задачу какой сервис закрывает и где у каждого ограничения.</span></div>
+      <div class="g"><div class="lbl">Подарок участникам</div><b>4 промта с урока</b><span>Те самые запросы, которые Галина покажет в эфире.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap ex">
+  <div class="ex-box">
+    <img src="https://fs.getcourse.ru/fileservice/file/download/a/449416/sc/0/h/900fe97b5565239f1dd74593a29c2e52.webp" width="110" height="110" alt="Галина Волкова">
+    <div>
+      <b>Галина Волкова</b>
+      <p>27 лет в бухгалтерии, собственник аутсорсинговой компании. Внедрила ИИ в работу своей команды и показывает его на тех задачах, с которыми бухгалтер сталкивается каждый день.</p>
+      <div class="nums">
+        <div><b>200+</b><span>клиентов на обслуживании</span></div>
+        <div><b>20</b><span>сотрудников в команде</span></div>
+        <div><b>40+ млн ₽</b><span>годовой оборот</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap final-grid">
+    <div>
+      <h2>Увидимся на уроке сегодня в <span class="lp-time">13:00</span> мск</h2>
+      <p>Ни ВПН, ни иностранных карт не нужно: всё работает в обычном браузере на русском языке. Подпись под ответом всегда остаётся за вами.</p>
+    </div>
+    <div class="card"><h2>Получить ссылку на урок</h2>
+      <div class="free">Онлайн, бесплатно</div>
+      <a href="#lp-reg" class="lp-jump">Записаться на урок</a></div>
+  </div>
+</section>
+</div>
+
+<script>
+/* Переносит форму GetCourse (блок «Форма» этой страницы) в место .gc-form-slot.
+   Сначала берутся обычные блоки формы, потом всплывающие; пустой обычный блок скрывается. */
+(function () {
+  function moveForms() {
+    var root = document.querySelector('.lp-ii4');
+    if (!root) return;
+    var slots = root.querySelectorAll('.gc-form-slot:not(.is-filled)');
+    if (!slots.length) return;
+    var normal = [], popup = [];
+    Array.prototype.forEach.call(
+      document.querySelectorAll('form.lt-form, form.lt-normal-form'),
+      function (f) {
+        if (root.contains(f)) return;
+        (f.closest('.lt-modal-block') ? popup : normal).push(f);
+      }
+    );
+    var forms = normal.concat(popup);
+    for (var i = 0; i < slots.length && i < forms.length; i++) {
+      var block = forms[i].closest('.lt-block');
+      var isPopup = !!forms[i].closest('.lt-modal-block');
+      slots[i].appendChild(forms[i]);
+      slots[i].classList.add('is-filled');
+      if (block && !isPopup) block.style.display = 'none';
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', moveForms);
+  else moveForms();
+  window.addEventListener('load', moveForms);
+})();
+
+/* Дата и время эфира — то же правило, что на текущей странице:
+   ближайшая 10-минутная отметка вперёд по Москве, с переносом часа и суток. */
+(function () {
+  var MONTHS = ['января','февраля','марта','апреля','мая','июня',
+                'июля','августа','сентября','октября','ноября','декабря'];
+  var DIM = [31,28,31,30,31,30,31,31,30,31,30,31];
+  function pad(n){ return String(n).length < 2 ? '0' + n : '' + n; }
+  function render(){
+    var root = document.querySelector('.lp-ii4');
+    if (!root) return;
+    var v = {};
+    new Intl.DateTimeFormat('ru-RU', {timeZone:'Europe/Moscow', day:'numeric', month:'numeric',
+      year:'numeric', hour:'2-digit', minute:'2-digit', hour12:false})
+      .formatToParts(new Date()).forEach(function(p){ if (p.type !== 'literal') v[p.type] = p.value; });
+    var day = Number(v.day), month = Number(v.month) - 1, year = Number(v.year);
+    var hour = Number(v.hour), minute = Number(v.minute);
+    var rounded = Math.ceil((minute + 1) / 10) * 10;
+    if (rounded >= 60) { rounded -= 60; hour += 1; }
+    if (hour >= 24) {
+      hour -= 24;
+      var dim = DIM.slice();
+      if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) dim[1] = 29;
+      if (day + 1 > dim[month]) { day = 1; month = month + 1 > 11 ? 0 : month + 1; } else { day += 1; }
+    }
+    var time = pad(hour) + ':' + pad(rounded);
+    Array.prototype.forEach.call(root.querySelectorAll('.lp-time'), function (el) { el.textContent = time; });
+    Array.prototype.forEach.call(root.querySelectorAll('.lp-date'), function (el) {
+      el.textContent = day + ' ' + MONTHS[month];
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
+  else render();
+  setInterval(render, 30000);
+})();
+
+/* UTM-метки из адреса страницы → скрытые поля формы GetCourse.
+   Заполняем после загрузки и ещё раз перед отправкой: иначе значения стираются,
+   пока GetCourse готовит форму. */
+(function () {
+  var FIELDS = {utm_source: 979724, utm_medium: 979725, utm_campaign: 979726, utm_content: 979727, utm_term: 979728};
+  function param(name) {
+    var m = location.search.match(new RegExp('[?&]' + name + '=([^&#]*)'));
+    if (!m) return '';
+    try { return decodeURIComponent(m[1].replace(/\+/g, ' ')); } catch (e) { return m[1]; }
+  }
+  function fillUtm() {
+    Object.keys(FIELDS).forEach(function (key) {
+      var value = param(key);
+      if (!value) return;
+      Array.prototype.forEach.call(
+        document.querySelectorAll('input[name="formParams[userCustomFields][' + FIELDS[key] + ']"]'),
+        function (input) { input.value = value; }
+      );
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fillUtm);
+  else fillUtm();
+  window.addEventListener('load', function () { fillUtm(); setTimeout(fillUtm, 1500); });
+  document.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('form')) fillUtm(); }, true);
+  document.addEventListener('submit', fillUtm, true);
+})();
+</script>

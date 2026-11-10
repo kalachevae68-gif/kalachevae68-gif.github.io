@@ -1,0 +1,370 @@
+<!-- Макет посадочной воронки ИИ. Вставляется целиком в один блок «HTML-код» GetCourse. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fs.getcourse.ru">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+<style>
+/* ===== Обёртка GetCourse: HTML-блок на всю ширину страницы ===== */
+.lt-block:has(.lp-ii1) > .lt-block-wrapper{padding:0 !important;background:none !important}
+.lt-block:has(.lp-ii1) .container{width:100% !important;max-width:none !important;padding-left:0 !important;padding-right:0 !important}
+.lt-block:has(.lp-ii1) .row{margin-left:0 !important;margin-right:0 !important}
+.lt-block:has(.lp-ii1) [class*="col-"]{width:100% !important;float:none !important;padding-left:0 !important;padding-right:0 !important}
+.lp-ii1 a:hover,.lp-ii1 a:focus{text-decoration:none}
+/* GetCourse задаёт заголовкам свои отступы — снимаем их той же силой селектора */
+.lp-ii1 h1,.lp-ii1 h2,.lp-ii1 h3,.lp-ii1 h4,.lp-ii1 h5,.lp-ii1 h6{margin:0}
+.lp-ii1 .lead{font-weight:400}
+.lp-ii1 b,.lp-ii1 strong{font-weight:700}
+
+.lp-ii1 /* ============ ВАРИАНТ 1 · «КАЛЬКУЛЯТОР» ============
+   Вместо чтения — действие: человек отмечает, .lp-ii1 сколько у него клиентов, .lp-ii1 и сразу видит
+   свои часы и деньги. Светлая приборная панель, .lp-ii1 крупные цифры, .lp-ii1 полосы вместо абзацев.
+   Форма идёт сразу за расчётом, .lp-ii1 пока цифра перед глазами. */
+*, .lp-ii1 *::before, .lp-ii1 *::after{box-sizing:border-box;margin:0;padding:0}
+.lp-ii1{--bg:#F3F5F8;--card:#fff;--ink:#14161A;--soft:#636976;--line:#E3E7ED;--orange:#FF7A00;--orange-dp:#E26900;--red:#D8382B;--green:#139A5B}
+html{scroll-behavior:smooth}
+.lp-ii1{font-family:Inter,system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:var(--bg);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.lp-ii1 img{max-width:100%;height:auto;display:block}
+.lp-ii1 .wrap{width:100%;max-width:1100px;margin:0 auto;padding:0 20px}
+.lp-ii1 .bar{background:var(--card);border-bottom:1px solid var(--line)}
+.lp-ii1 .bar .in{display:flex;align-items:center;gap:14px;padding:12px 0;font-size:14px}
+.lp-ii1 .bar .org{font-weight:800;letter-spacing:.02em}
+.lp-ii1 .bar .right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.lp-ii1 .bar .when{font-size:14px;color:var(--soft)}
+.lp-ii1 .bar .when b{color:var(--ink)}
+.lp-ii1 .bar a{background:var(--orange);color:#fff;text-decoration:none;font-weight:800;font-size:14.5px;padding:10px 16px;border-radius:10px}
+.lp-ii1 .bar a:hover{background:var(--orange-dp)}
+.lp-ii1 .hero{padding:30px 0 10px;text-align:center}
+.lp-ii1 .kick{display:inline-block;background:#FFEEDC;color:var(--orange-dp);font-size:13px;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;padding:8px 14px;border-radius:30px}
+.lp-ii1 h1{margin-top:16px;font-size:clamp(27px,3.8vw,46px);line-height:1.1;font-weight:900;letter-spacing:-.03em}
+.lp-ii1 h1 span{color:var(--orange)}
+.lp-ii1 .sub{margin:14px auto 0;color:var(--soft);font-size:18px;max-width:620px}
+.lp-ii1 /* калькулятор */
+.calc{margin-top:26px;background:var(--card);border-radius:22px;box-shadow:0 18px 44px rgba(20,22,26,.09);overflow:hidden;text-align:left}
+.lp-ii1 .calc-head{padding:22px 26px;border-bottom:1px solid var(--line)}
+.lp-ii1 .calc-head b{font-size:18px;font-weight:800}
+.lp-ii1 .pick{margin-top:14px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.lp-ii1 .pick button{border:1.5px solid var(--line);background:#fff;color:var(--ink);font-family:inherit;font-size:16px;font-weight:700;
+  padding:12px 20px;border-radius:12px;cursor:pointer;transition:.14s}
+.lp-ii1 .pick button:hover{border-color:var(--orange)}
+.lp-ii1 .pick button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.lp-ii1 .calc-body{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line)}
+.lp-ii1 .cell{background:var(--card);padding:24px 26px}
+.lp-ii1 .cell .lbl{font-size:14px;color:var(--soft)}
+.lp-ii1 .cell .val{margin-top:8px;font-size:clamp(28px,3.4vw,40px);font-weight:900;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.lp-ii1 .cell.now .val{color:var(--red)}
+.lp-ii1 .cell.free .val{color:var(--ink)}
+.lp-ii1 .cell.money .val{color:var(--green)}
+.lp-ii1 .cell .hint{margin-top:8px;font-size:13.5px;color:var(--soft)}
+.lp-ii1 .bars{margin-top:14px;height:10px;border-radius:10px;background:#EDF0F4;overflow:hidden}
+.lp-ii1 .bars i{display:block;height:100%;background:var(--red);transition:width .5s ease}
+.lp-ii1 .cell.free .bars i{background:var(--orange)}
+.lp-ii1 .cell.money .bars i{background:var(--green)}
+.lp-ii1 .calc-foot{padding:18px 26px;background:#FAFBFC;border-top:1px solid var(--line);font-size:15px;color:var(--soft)}
+.lp-ii1 .calc-foot b{color:var(--ink)}
+.lp-ii1 /* форма */
+.reg{margin:26px 0 10px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:24px;align-items:center;
+  background:var(--ink);color:#fff;border-radius:22px;padding:28px}
+.lp-ii1 .reg h2{font-size:clamp(21px,2.4vw,30px);font-weight:900;line-height:1.15}
+.lp-ii1 .reg p{margin-top:10px;color:#B9BFCB}
+.lp-ii1 .card{background:#fff;color:var(--ink);border-radius:16px;padding:20px}
+.lp-ii1 .f-input{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:14px;font-family:inherit;font-size:16.5px;margin-bottom:10px}
+.lp-ii1 .f-input:focus{outline:0;border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,122,0,.16)}
+.lp-ii1 .btn{display:block;width:100%;border:0;cursor:pointer;font-family:inherit;font-weight:800;font-size:17.5px;color:#fff;background:var(--orange);
+  border-radius:12px;padding:17px;transition:.15s}
+.lp-ii1 .btn:hover{background:var(--orange-dp)}
+.lp-ii1 .small{margin-top:10px;font-size:12.5px;color:var(--soft);text-align:center}
+.lp-ii1 /* три задачи полосками */
+.tasks{padding:34px 0 10px}
+.lp-ii1 .h2{font-size:clamp(22px,2.6vw,30px);font-weight:900;letter-spacing:-.02em;text-align:center}
+.lp-ii1 .tgrid{margin-top:22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.lp-ii1 .t{background:var(--card);border-radius:18px;padding:20px;box-shadow:0 10px 26px rgba(20,22,26,.06)}
+.lp-ii1 .t b{font-size:17px;font-weight:800}
+.lp-ii1 .t .pair{margin-top:14px;display:grid;gap:10px}
+.lp-ii1 .t .line{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:10px;align-items:center;font-size:14px;color:var(--soft)}
+.lp-ii1 .t .line i{display:block;height:9px;border-radius:9px;background:var(--red)}
+.lp-ii1 .t .line.after i{background:var(--green)}
+.lp-ii1 .t .line b{font-size:14.5px;color:var(--ink);white-space:nowrap}
+.lp-ii1 /* эксперт */
+.ex{margin:26px 0 0;background:var(--card);border-radius:18px;padding:20px;display:grid;grid-template-columns:78px minmax(0,1fr);gap:16px;align-items:center;box-shadow:0 10px 26px rgba(20,22,26,.06)}
+.lp-ii1 .ex img{width:78px;height:78px;border-radius:14px;object-fit:cover;object-position:50% 12%;background:#FFD6A8}
+.lp-ii1 .ex b{font-size:18px}
+.lp-ii1 .ex p{margin-top:5px;color:var(--soft);font-size:15.5px}
+.lp-ii1 footer{padding:28px 0 60px;font-size:13.5px;color:#868C99;text-align:center}
+.lp-ii1 .demo{position:fixed;left:12px;bottom:12px;z-index:9;background:var(--ink);color:#fff;font-size:12.5px;padding:8px 12px;border-radius:10px;opacity:.92}
+
+@media (max-width:900px){
+.lp-ii1 .hero{padding:20px 0 4px}
+.lp-ii1 h1{font-size:clamp(24px,6.6vw,33px)}
+.lp-ii1 .sub{font-size:16px}
+.lp-ii1 .calc-body{grid-template-columns:minmax(0,1fr)}
+.lp-ii1 .cell{padding:18px}
+.lp-ii1 .cell .val{font-size:30px}
+.lp-ii1 .reg{grid-template-columns:minmax(0,1fr);padding:20px}
+.lp-ii1 .tgrid{grid-template-columns:minmax(0,1fr)}
+.lp-ii1 .pick{grid-template-columns:repeat(2,minmax(0,1fr))}
+.lp-ii1 .pick button{padding:12px 10px}
+.lp-ii1 .bar .org{display:none}
+}
+
+.lp-ii1 .lp-jump{display:block;text-align:center;background:#FF7A00;color:#fff;text-decoration:none;
+  font-weight:800;font-size:17.5px;padding:17px 20px;border-radius:12px;transition:background .16s}
+.lp-ii1 .lp-jump:hover{background:#E26900;color:#fff}
+
+/* ===== Стандартная форма GetCourse внутри макета ===== */
+.lp-ii1 .gc-form-slot{width:100%}
+.lp-ii1 .gc-form-slot .modal-block-content,.lp-ii1 .gc-form-slot form,.lp-ii1 .gc-form-slot .lt-form,.lp-ii1 .gc-form-slot .form-content,.lp-ii1 .gc-form-slot .builder{width:100% !important;max-width:none !important;float:none !important;margin:0 !important;padding:0 !important;background:none !important;border:0 !important;border-radius:0 !important;box-shadow:none !important}
+.lp-ii1 .gc-form-slot .builder-item{display:block;width:100% !important;float:none !important;margin:0 0 10px !important;padding:0 !important;background:none !important;border:0 !important;box-shadow:none !important;text-align:left !important}
+.lp-ii1 .gc-form-slot .builder-item.hidden,.lp-ii1 .gc-form-slot .hidden,.lp-ii1 .gc-form-slot .price-block,.lp-ii1 .gc-form-slot .add-redesign-subblock,.lp-ii1 .gc-form-slot .common-setting-link{display:none !important}
+.lp-ii1 .gc-form-slot .f-input{display:block;width:100% !important;height:auto !important;margin:0 !important;border:1.5px solid #E3E7ED !important;border-radius:12px !important;background:#FFFFFF !important;padding:15px !important;color:#14161A !important;font:500 16px/1.3 Inter,Arial,sans-serif !important;box-shadow:none !important;outline:0 !important}
+.lp-ii1 .gc-form-slot .f-input:focus{border-color:#FF7A00 !important;box-shadow:0 0 0 3px rgba(255,138,0,.16) !important}
+.lp-ii1 .gc-form-slot .f-input::placeholder{color:#9A9DA4 !important;opacity:1}
+.lp-ii1 .gc-form-slot .part-button{margin:6px 0 0 !important}
+.lp-ii1 .gc-form-slot button,.lp-ii1 .gc-form-slot .btn,.lp-ii1 .gc-form-slot .f-btn{display:block !important;width:100% !important;height:auto !important;margin:0 !important;padding:17px 20px !important;border:0 !important;border-radius:12px !important;background:#FF7A00 !important;color:#fff !important;font:800 17.5px/1.2 Inter,Arial,sans-serif !important;text-transform:none !important;letter-spacing:0 !important;white-space:normal !important;cursor:pointer;transition:background .16s}
+.lp-ii1 .gc-form-slot button:hover,.lp-ii1 .gc-form-slot .btn:hover,.lp-ii1 .gc-form-slot .f-btn:hover{background:#E26900 !important}
+.lp-ii1 .gc-form-slot .chb,.lp-ii1 .gc-form-slot .checkbox-label,.lp-ii1 .gc-form-slot .part-html,.lp-ii1 .gc-form-slot label{font:400 12.5px/1.45 Inter,Arial,sans-serif !important;color:#6B6B76 !important;text-align:left !important;margin:0 !important}
+.lp-ii1 .gc-form-slot .checkbox-label{display:flex !important;gap:8px;align-items:flex-start;margin:0 0 6px !important;cursor:pointer}
+.lp-ii1 .gc-form-slot input[type="checkbox"]{position:static !important;opacity:1 !important;-webkit-appearance:checkbox !important;appearance:auto !important;flex:none;width:15px !important;height:15px !important;margin:1px 0 0 !important;accent-color:#FF7A00}
+.lp-ii1 .gc-form-slot .form-result-block{font:500 15px/1.5 Inter,Arial,sans-serif;color:#14161A}
+
+</style>
+<div class="lp-ii1">
+<div class="bar">
+  <div class="wrap in">
+    <span class="org">Бухгалтер на миллион</span>
+    <span class="right">
+      <span class="when">Бесплатный эфир сегодня в <b class="lp-time">13:00</b> мск</span>
+      <a href="#reg">Записаться</a>
+    </span>
+  </div>
+</div>
+
+<header class="wrap hero">
+  <span class="kick">Бесплатный онлайн-урок · нейросети в работе бухгалтера</span>
+  <h1>Посчитайте, сколько часов <span>съедает рутина</span> именно у вас</h1>
+  <p class="sub">Отметьте, сколько клиентов вы ведёте, и посмотрите, что будет, если механику отдать нейросети.</p>
+
+  <div class="calc">
+    <div class="calc-head">
+      <b>Сколько клиентов вы ведёте сейчас?</b>
+      <div class="pick">
+        <button data-c="0">Пока нет</button>
+        <button data-c="3">3</button>
+        <button data-c="5" class="on">5</button>
+        <button data-c="8">8</button>
+        <button data-c="11">11 и больше</button>
+      </div>
+    </div>
+
+    <div class="calc-body">
+      <div class="cell now">
+        <div class="lbl" id="lbl1">Ваш доход сейчас</div>
+        <div class="val"><span id="hoursNow">100 000</span> ₽</div>
+        <div class="bars"><i id="barNow" style="width:45%"></i></div>
+        <div class="hint" id="h1">при среднем чеке 20 000 ₽ за клиента</div>
+      </div>
+      <div class="cell free">
+        <div class="lbl" id="lbl2">Вернёт нейросеть</div>
+        <div class="val"><span id="hoursFree">20</span> часов/мес</div>
+        <div class="bars"><i id="barFree" style="width:45%"></i></div>
+        <div class="hint" id="h2">столько экономит команда Галины за месяц</div>
+      </div>
+      <div class="cell money">
+        <div class="lbl" id="lbl3">Станет с двумя новыми клиентами</div>
+        <div class="val"><span id="money">140 000</span> ₽</div>
+        <div class="bars"><i id="barMoney" style="width:50%"></i></div>
+        <div class="hint" id="h3">в освободившееся время помещаются ещё два клиента</div>
+      </div>
+    </div>
+
+    <div class="calc-foot" id="foot">Нанять помощницу — это 40 000 ₽ плюс налоги и два-три месяца обучения. <b>Эти часы не стоят ничего.</b></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="reg" id="reg">
+    <div>
+      <h2>Покажем вживую, как эти часы освобождаются</h2>
+      <p>Галина Волкова откроет свой экран: требование ФНС, договор, сверка КУДиР. Урок бесплатный, идёт один раз, записи не будет.</p>
+    </div>
+    <div class="card" id="lp-reg"><div class="gc-form-slot"><!-- сюда переносится форма GetCourse --></div>
+      
+      
+      
+      <div class="small">Сразу после регистрации — гайд «5 промтов для бухгалтера»</div></div>
+  </section>
+
+  <section class="tasks">
+    <h2 class="h2">Из чего складываются эти часы</h2>
+    <div class="tgrid">
+      <div class="t">
+        <b>Требование ФНС на 30 листах</b>
+        <div class="pair">
+          <div class="line"><span>было</span><i style="width:100%"></i><b>3 часа</b></div>
+          <div class="line after"><span>стало</span><i style="width:14%"></i><b>15 минут</b></div>
+        </div>
+      </div>
+      <div class="t">
+        <b>Ответ клиенту простым языком</b>
+        <div class="pair">
+          <div class="line after"><span>с ИИ</span><i style="width:10%"></i><b>2 минуты</b></div>
+        </div>
+      </div>
+      <div class="t">
+        <b>Риски в договоре контрагента</b>
+        <div class="pair">
+          <div class="line after"><span>с ИИ</span><i style="width:14%"></i><b>3 минуты</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex">
+      <img src="https://fs.getcourse.ru/fileservice/file/download/a/449416/sc/0/h/900fe97b5565239f1dd74593a29c2e52.webp" width="78" height="78" alt="Галина Волкова">
+      <div>
+        <b>Ведёт Галина Волкова</b>
+        <p>27 лет в бухгалтерии, своя аутсорсинговая компания: 20 сотрудников, оборот 40+ млн ₽ в год. Ни ВПН, ни иностранных карт для работы не нужно.</p>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+<script>
+/* Переносит форму GetCourse (блок «Форма» этой страницы) в место .gc-form-slot.
+   Сначала берутся обычные блоки формы, потом всплывающие; пустой обычный блок скрывается. */
+(function () {
+  function moveForms() {
+    var root = document.querySelector('.lp-ii1');
+    if (!root) return;
+    var slots = root.querySelectorAll('.gc-form-slot:not(.is-filled)');
+    if (!slots.length) return;
+    var normal = [], popup = [];
+    Array.prototype.forEach.call(
+      document.querySelectorAll('form.lt-form, form.lt-normal-form'),
+      function (f) {
+        if (root.contains(f)) return;
+        (f.closest('.lt-modal-block') ? popup : normal).push(f);
+      }
+    );
+    var forms = normal.concat(popup);
+    for (var i = 0; i < slots.length && i < forms.length; i++) {
+      var block = forms[i].closest('.lt-block');
+      var isPopup = !!forms[i].closest('.lt-modal-block');
+      slots[i].appendChild(forms[i]);
+      slots[i].classList.add('is-filled');
+      if (block && !isPopup) block.style.display = 'none';
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', moveForms);
+  else moveForms();
+  window.addEventListener('load', moveForms);
+})();
+
+/* Дата и время эфира — то же правило, что на текущей странице:
+   ближайшая 10-минутная отметка вперёд по Москве, с переносом часа и суток. */
+(function () {
+  var MONTHS = ['января','февраля','марта','апреля','мая','июня',
+                'июля','августа','сентября','октября','ноября','декабря'];
+  var DIM = [31,28,31,30,31,30,31,31,30,31,30,31];
+  function pad(n){ return String(n).length < 2 ? '0' + n : '' + n; }
+  function render(){
+    var root = document.querySelector('.lp-ii1');
+    if (!root) return;
+    var v = {};
+    new Intl.DateTimeFormat('ru-RU', {timeZone:'Europe/Moscow', day:'numeric', month:'numeric',
+      year:'numeric', hour:'2-digit', minute:'2-digit', hour12:false})
+      .formatToParts(new Date()).forEach(function(p){ if (p.type !== 'literal') v[p.type] = p.value; });
+    var day = Number(v.day), month = Number(v.month) - 1, year = Number(v.year);
+    var hour = Number(v.hour), minute = Number(v.minute);
+    var rounded = Math.ceil((minute + 1) / 10) * 10;
+    if (rounded >= 60) { rounded -= 60; hour += 1; }
+    if (hour >= 24) {
+      hour -= 24;
+      var dim = DIM.slice();
+      if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) dim[1] = 29;
+      if (day + 1 > dim[month]) { day = 1; month = month + 1 > 11 ? 0 : month + 1; } else { day += 1; }
+    }
+    var time = pad(hour) + ':' + pad(rounded);
+    Array.prototype.forEach.call(root.querySelectorAll('.lp-time'), function (el) { el.textContent = time; });
+    Array.prototype.forEach.call(root.querySelectorAll('.lp-date'), function (el) {
+      el.textContent = day + ' ' + MONTHS[month];
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
+  else render();
+  setInterval(render, 30000);
+})();
+
+/* UTM-метки из адреса страницы → скрытые поля формы GetCourse.
+   Заполняем после загрузки и ещё раз перед отправкой: иначе значения стираются,
+   пока GetCourse готовит форму. */
+(function () {
+  var FIELDS = {utm_source: 979724, utm_medium: 979725, utm_campaign: 979726, utm_content: 979727, utm_term: 979728};
+  function param(name) {
+    var m = location.search.match(new RegExp('[?&]' + name + '=([^&#]*)'));
+    if (!m) return '';
+    try { return decodeURIComponent(m[1].replace(/\+/g, ' ')); } catch (e) { return m[1]; }
+  }
+  function fillUtm() {
+    Object.keys(FIELDS).forEach(function (key) {
+      var value = param(key);
+      if (!value) return;
+      Array.prototype.forEach.call(
+        document.querySelectorAll('input[name="formParams[userCustomFields][' + FIELDS[key] + ']"]'),
+        function (input) { input.value = value; }
+      );
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fillUtm);
+  else fillUtm();
+  window.addEventListener('load', function () { fillUtm(); setTimeout(fillUtm, 1500); });
+  document.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('form')) fillUtm(); }, true);
+  document.addEventListener('submit', fillUtm, true);
+})();
+</script>
+<script>
+/* Считаем только на подтверждённых цифрах: средний чек 20 000 ₽ и 20 часов, которые
+   нейросеть возвращает за месяц — этого времени хватает ещё на двух клиентов. */
+var CHEK = 20000, PLUS = 2, HOURS = 20;
+var TXT = {
+  have: {
+    l1: 'Ваш доход сейчас',   h1: 'при среднем чеке 20 000 ₽ за клиента',
+    l2: 'Вернёт нейросеть',   h2: 'столько экономит команда Галины за месяц',
+    l3: 'Станет с двумя новыми клиентами', h3: 'в освободившееся время помещаются ещё два клиента',
+    foot: 'Нанять помощницу — это 40 000 ₽ плюс налоги и два-три месяца обучения. <b>Освободившиеся часы не стоят ничего.</b>'
+  },
+  new: {
+    l1: 'Клиентов пока нет',  h1: 'доход только с основной работы',
+    l2: 'Вернёт нейросеть',   h2: 'столько экономит команда Галины за месяц',
+    l3: 'Можно вести, не бросая работу', h3: 'два первых клиента по 20 000 ₽',
+    foot: 'Первых клиентов берут, не увольняясь: механику закрывает нейросеть, а <b>опыт и подпись остаются вашими</b>.'
+  }
+};
+function fmt(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+function render(c){
+  var n = parseInt(c, 10);
+  var t = TXT[n === 0 ? 'new' : 'have'];
+  var nowMoney = n * CHEK, willMoney = (n + PLUS) * CHEK;
+  document.getElementById('lbl1').textContent = t.l1;
+  document.getElementById('lbl2').textContent = t.l2;
+  document.getElementById('lbl3').textContent = t.l3;
+  document.getElementById('h1').textContent = t.h1;
+  document.getElementById('h2').textContent = t.h2;
+  document.getElementById('h3').textContent = t.h3;
+  document.getElementById('foot').innerHTML = t.foot;
+  document.getElementById('hoursNow').textContent = n === 0 ? '0' : fmt(nowMoney);
+  document.getElementById('hoursFree').textContent = HOURS;
+  document.getElementById('money').textContent = fmt(willMoney);
+  document.getElementById('barNow').style.width = Math.round(nowMoney / 260000 * 100) + '%';
+  document.getElementById('barFree').style.width = '100%';
+  document.getElementById('barMoney').style.width = Math.round(willMoney / 260000 * 100) + '%';
+}
+document.querySelectorAll('.pick button').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.querySelectorAll('.pick button').forEach(function(x){ x.classList.remove('on'); });
+    b.classList.add('on');
+    render(b.dataset.c);
+  });
+});
+render(5);
+</script>
