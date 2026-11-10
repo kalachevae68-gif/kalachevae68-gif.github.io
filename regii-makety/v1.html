@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вариант 1 — «Короткая дверь» | Урок по ИИ для бухгалтеров</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fs.getcourse.ru">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<style>
+/* ============ ВАРИАНТ 1 · «КОРОТКАЯ ДВЕРЬ» ============
+   Трафик приходит с ПромоСтраниц уже прогретым статьёй, поэтому страница короткая:
+   оффер и форма в первом экране, ниже только то, чего в статье не было. */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--orange:#FF8A00;--orange-dp:#F4600A;--cream:#FFF5EC;--ink:#26282E;--soft:#5C6069;--line:#EDE6DD}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:#fff;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+.nw{white-space:nowrap}
+
+/* строка-мостик со статьи */
+.bridge{background:var(--ink);color:#fff;font-size:14.5px;line-height:1.4;padding:11px 0;text-align:center}
+.bridge b{color:#FFB35C}
+
+/* первый экран: слева оффер, справа форма */
+.hero{background:radial-gradient(70% 90% at 85% 0%,#FFF1DF,transparent 70%),var(--cream);padding:34px 0 40px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:40px;align-items:center}
+.tag{display:inline-block;background:#fff;border:1px solid #F2DDC4;color:var(--orange-dp);font-size:13px;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:30px}
+h1{margin-top:18px;font-size:clamp(28px,3.6vw,46px);line-height:1.1;font-weight:900;letter-spacing:-.025em}
+h1 em{font-style:normal;color:var(--orange-dp)}
+.sub{margin-top:16px;font-size:18px;color:var(--soft);max-width:520px}
+.when{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+.when span{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:15px;font-weight:700}
+.when span b{color:var(--orange-dp)}
+.hero-photo{margin-top:22px;max-width:340px;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#FFE4C2,#FFD098)}
+
+/* карточка формы */
+.card{background:#fff;border-radius:22px;padding:28px 26px;border-top:6px solid var(--orange);box-shadow:0 24px 60px rgba(120,70,20,.16)}
+.card h2{font-size:22px;font-weight:900;line-height:1.2}
+.card .free{margin:8px 0 18px;font-size:15px;color:var(--soft)}
+.f-input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:15px 16px;font-family:inherit;font-size:16.5px;margin-bottom:11px;background:#FFFDFA}
+.f-input:focus{outline:0;border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,138,0,.15)}
+.btn{display:block;width:100%;border:0;cursor:pointer;font-family:inherit;font-weight:800;font-size:18px;line-height:1.25;
+  color:#fff;background:var(--orange);border-radius:14px;padding:18px 20px;box-shadow:0 12px 26px rgba(244,96,10,.3);transition:.16s}
+.btn:hover{background:var(--orange-dp);transform:translateY(-1px)}
+.agree{margin-top:12px;font-size:12.5px;color:var(--soft);line-height:1.45}
+.agree label{display:flex;gap:8px;align-items:flex-start;margin-bottom:6px;cursor:pointer}
+.agree input{margin-top:3px;accent-color:var(--orange);flex:none}
+.gift-line{margin-top:14px;background:var(--cream);border-radius:12px;padding:11px 13px;font-size:14px;line-height:1.45;display:flex;gap:9px}
+
+/* что покажем */
+.what{padding:56px 0}
+.h2{font-size:clamp(24px,2.8vw,34px);font-weight:900;letter-spacing:-.02em;line-height:1.15}
+.lead{margin-top:12px;color:var(--soft);font-size:17px;max-width:680px}
+.rows{margin-top:28px;border-top:2px solid var(--ink)}
+.row{display:grid;grid-template-columns:44px minmax(0,1fr);gap:18px;padding:18px 0;border-bottom:1px solid var(--line);align-items:start}
+.row .n{font-size:26px;font-weight:900;color:var(--orange);line-height:1.1}
+.row b{display:block;font-size:18px;font-weight:800;margin-bottom:4px}
+.row p{color:var(--soft);font-size:16px}
+
+/* эксперт одной полосой */
+.ex{background:var(--ink);color:#fff;padding:40px 0}
+.ex-grid{display:grid;grid-template-columns:96px minmax(0,1fr);gap:22px;align-items:center}
+.ex img{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:50% 12%;background:#FFB040}
+.ex h3{font-size:22px;font-weight:900}
+.ex p{margin-top:8px;color:#C8CBD2;font-size:16px;line-height:1.5}
+.ex-nums{margin-top:16px;display:flex;gap:26px;flex-wrap:wrap}
+.ex-nums div b{display:block;font-size:22px;color:var(--orange);font-weight:900;line-height:1.1}
+.ex-nums div span{font-size:13.5px;color:#A9AEB8}
+
+/* финальная форма */
+.final{padding:56px 0;background:var(--cream)}
+.final-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:36px;align-items:center}
+.final h2{font-size:clamp(24px,2.8vw,34px);font-weight:900;line-height:1.15}
+.final p{margin-top:14px;color:var(--soft);font-size:17px}
+footer{padding:28px 0;font-size:13.5px;color:#8B9099;text-align:center}
+.demo{position:fixed;left:12px;bottom:12px;z-index:9;background:var(--ink);color:#fff;font-size:12.5px;padding:8px 12px;border-radius:10px;opacity:.9}
+
+@media (max-width:900px){
+  .hero{padding:20px 0 28px}
+  .hero-grid,.final-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+  .hero-photo{display:none}
+  h1{font-size:clamp(25px,6.6vw,34px)}
+  .sub{font-size:16px}
+  .card{padding:20px 18px}
+  .what{padding:40px 0}
+  .ex-grid{grid-template-columns:72px minmax(0,1fr);gap:16px}
+  .ex img{width:72px;height:72px}
+  .final{padding:40px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="bridge">Вы дочитали статью про нейросети в работе бухгалтера. <b>Дальше — живой урок, где это показывают на реальных задачах</b></div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">Бесплатный открытый урок</span>
+      <h1>Покажем вживую, как ИИ делает за бухгалтера <em>рутинную часть работы</em></h1>
+      <p class="sub">Галина Волкова откроет свои рабочие инструменты и прямо в эфире разберёт КУДиР, требование и договор с помощью нейросетей.</p>
+      <div class="when">
+        <span>Сегодня в <b class="lp-time">13:00</b> мск</span>
+        <span>Онлайн, 60 минут</span>
+        <span>Бесплатно</span>
+      </div>
+      <div class="hero-photo">
+        <img src="https://fs.getcourse.ru/fileservice/file/download/a/449416/sc/0/h/0bbd4c92b0af870f69eddca08b00c009.webp" width="853" height="953" alt="Галина Волкова">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Займите место на уроке</h2>
+      <div class="free">Участие бесплатное, записи не будет</div>
+      <form onsubmit="return demo(event)">
+        <input class="f-input" placeholder="Ваше имя">
+        <input class="f-input" placeholder="Ваш email">
+        <input class="f-input" placeholder="Номер телефона">
+        <div class="agree">
+          <label><input type="checkbox" checked> Даю согласие на обработку персональных данных</label>
+          <label><input type="checkbox" checked> Даю согласие на получение материалов</label>
+        </div>
+        <button class="btn" type="submit">Зарегистрироваться</button>
+      </form>
+      <div class="gift-line"><span>🎁</span><span>Сразу после регистрации — гайд <b>«5 промтов для бухгалтера»</b></span></div>
+    </div>
+  </div>
+</header>
+
+<section class="what">
+  <div class="wrap">
+    <h2 class="h2">Что покажем в эфире</h2>
+    <p class="lead">Не обзор нейросетей и не пересказ статьи. Четыре задачи, которые бухгалтер делает руками каждую неделю.</p>
+    <div class="rows">
+      <div class="row"><div class="n">01</div><div><b>Разбор КУДиР</b><p>Как ИИ помогает пройти большой объём операций и показать места, где нужна проверка.</p></div></div>
+      <div class="row"><div class="n">02</div><div><b>Ответ на требование</b><p>Быстро собрать нормы, аргументы и основу ответа вместо вечера в поиске.</p></div></div>
+      <div class="row"><div class="n">03</div><div><b>Проверка договора и консультация клиенту</b><p>Риски, формулировки и готовая структура ответа заказчику.</p></div></div>
+      <div class="row"><div class="n">04</div><div><b>Освободившееся время — в деньги</b><p>Куда девать часы, которые вернулись: больше клиентов, выше чек, развитие практики.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ex">
+  <div class="wrap ex-grid">
+    <img src="https://fs.getcourse.ru/fileservice/file/download/a/449416/sc/0/h/900fe97b5565239f1dd74593a29c2e52.webp" width="96" height="96" alt="Галина Волкова">
+    <div>
+      <h3>Галина Волкова</h3>
+      <p>27+ лет в бухгалтерии, собственник бухгалтерской компании. Внедрила ИИ в работу своей команды и показывает его на тех задачах, с которыми бухгалтер сталкивается каждый день.</p>
+      <div class="ex-nums">
+        <div><b>200+</b><span>клиентов на обслуживании</span></div>
+        <div><b>20</b><span>сотрудников в команде</span></div>
+        <div><b>40+ млн ₽</b><span>годовой оборот компании</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap final-grid">
+    <div>
+      <h2>Урок идёт один раз и в прямом эфире</h2>
+      <p>Регистрация занимает полминуты. Ссылку пришлём на почту, гайд с промтами придёт сразу.</p>
+    </div>
+    <div class="card">
+      <h2>Получить ссылку на урок</h2>
+      <div class="free">Сегодня в <b class="lp-time">13:00</b> мск</div>
+      <form onsubmit="return demo(event)">
+        <input class="f-input" placeholder="Ваше имя">
+        <input class="f-input" placeholder="Ваш email">
+        <input class="f-input" placeholder="Номер телефона">
+        <button class="btn" type="submit">Зарегистрироваться бесплатно</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>Макет для теста. Бухгалтер на миллион</footer>
+<div class="demo">Тестовый макет: форма не отправляет данные</div>
+
+<script>
+function demo(e){ e.preventDefault(); alert('Это макет для просмотра. В рабочей версии здесь стандартная форма GetCourse.'); return false; }
+/* время эфира: ближайший будущий 10-минутный слот по Москве */
+(function(){
+  function upd(){
+    var p={};
+    new Intl.DateTimeFormat('ru-RU',{timeZone:'Europe/Moscow',hour:'2-digit',minute:'2-digit',hour12:false})
+      .formatToParts(new Date()).forEach(function(x){ p[x.type]=parseInt(x.value,10); });
+    var total=(p.hour%24)*60+p.minute, slot=Math.floor(total/10)*10+10;
+    if(slot>=1440) slot-=1440;
+    var t=('0'+Math.floor(slot/60)).slice(-2)+':'+('0'+(slot%60)).slice(-2);
+    document.querySelectorAll('.lp-time').forEach(function(el){ el.textContent=t; });
+  }
+  upd(); setInterval(upd,20000);
+})();
+</script>
+</body>
+</html>
