@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вариант 4 — «Как сейчас, но короче» | Урок по ИИ для бухгалтеров</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fs.getcourse.ru">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<style>
+/* ============ ВАРИАНТ 4 · «КАК СЕЙЧАС, НО КОРОЧЕ» ============
+   Тот же визуальный язык, что у боевой страницы: кремовый фон, оранжевые акценты,
+   белые карточки, фото Галины в первом экране. Отличие одно — длина:
+   первый экран с формой, четыре пункта программы, подарки, эксперт, финал. Всё.
+   Нужен, чтобы отдельно проверить гипотезу «страница просто слишком длинная». */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--orange:#FF8A00;--orange-dp:#F4600A;--cream:#FFF5EC;--ink:#26282E;--soft:#5C6069;--line:#F0E3D4}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:#fff;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+.wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
+
+/* первый экран */
+.hero{background:radial-gradient(75% 90% at 78% 8%,#FFE9CE,transparent 70%),var(--cream);padding:30px 0 34px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:40px;align-items:center}
+.tag{display:inline-block;background:#fff;border:1px solid #F3DDBF;color:var(--orange-dp);font-size:12.5px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;border-radius:999px}
+h1{margin-top:18px;font-size:clamp(28px,3.6vw,46px);line-height:1.1;font-weight:900;letter-spacing:-.025em}
+h1 span{color:var(--orange-dp)}
+.sub{margin-top:14px;font-size:18px;color:var(--soft);max-width:520px}
+.meta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.meta span{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:15px;font-weight:700}
+.meta span b{color:var(--orange-dp)}
+.photo{margin-top:20px;max-width:330px}
+.photo img{filter:drop-shadow(0 18px 34px rgba(170,90,10,.22))}
+
+/* карточка формы */
+.card{background:#fff;border-radius:22px;padding:28px 26px;border-top:6px solid var(--orange);box-shadow:0 22px 54px rgba(150,90,20,.16)}
+.card h2{font-size:22px;font-weight:900;line-height:1.2}
+.card .free{margin:8px 0 18px;font-size:15px;color:var(--soft)}
+.f-input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:15px 16px;font-family:inherit;font-size:16.5px;margin-bottom:11px;background:#FFFDFA}
+.f-input:focus{outline:0;border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,138,0,.15)}
+.btn{display:block;width:100%;border:0;cursor:pointer;font-family:inherit;font-weight:800;font-size:18px;color:#fff;background:var(--orange);
+  border-radius:14px;padding:18px;box-shadow:0 12px 26px rgba(244,96,10,.3);transition:.16s}
+.btn:hover{background:var(--orange-dp);transform:translateY(-1px)}
+.small{margin-top:11px;font-size:12.5px;color:var(--soft);text-align:center}
+.gift{margin-top:14px;background:var(--cream);border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.45;display:flex;gap:9px}
+
+/* программа */
+.sec{padding:46px 0}
+.h2{font-size:clamp(23px,2.9vw,34px);font-weight:900;letter-spacing:-.02em;line-height:1.14;text-align:center}
+.lead{margin:12px auto 0;color:var(--soft);text-align:center;max-width:620px}
+.grid4{margin-top:26px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.item{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;gap:16px;align-items:flex-start}
+.item .n{flex:none;width:40px;height:40px;border-radius:12px;background:var(--cream);color:var(--orange-dp);font-weight:900;
+  display:flex;align-items:center;justify-content:center}
+.item b{font-size:17.5px;display:block}
+.item p{margin-top:5px;color:var(--soft);font-size:16px}
+
+/* подарки */
+.gifts{background:var(--cream);padding:40px 0}
+.gifts-grid{margin-top:22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.g{background:#fff;border-radius:18px;padding:20px}
+.g .lbl{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-dp)}
+.g b{display:block;margin-top:8px;font-size:17px}
+.g span{display:block;margin-top:6px;color:var(--soft);font-size:15px}
+
+/* эксперт */
+.ex{padding:38px 0}
+.ex-box{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}
+.ex-box img{width:110px;height:110px;border-radius:50%;object-fit:cover;object-position:50% 12%;background:#FFD9AB}
+.ex-box b{font-size:20px}
+.ex-box p{margin-top:6px;color:var(--soft);font-size:16px}
+.nums{margin-top:12px;display:flex;gap:22px;flex-wrap:wrap}
+.nums div b{display:block;font-size:19px;color:var(--orange-dp)}
+.nums div span{font-size:13.5px;color:var(--soft)}
+
+/* финал */
+.final{background:radial-gradient(60% 80% at 85% 20%,rgba(255,138,0,.3),transparent 70%),#1E1F24;color:#fff;padding:46px 0}
+.final-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:34px;align-items:center}
+.final h2{font-size:clamp(23px,2.9vw,34px);font-weight:900;line-height:1.14}
+.final p{margin-top:12px;color:#C6C8CF}
+footer{padding:26px 0 60px;font-size:13.5px;color:#8B9099;text-align:center}
+.demo{position:fixed;left:12px;bottom:12px;z-index:9;background:var(--ink);color:#fff;font-size:12.5px;padding:8px 12px;border-radius:10px;opacity:.92}
+
+@media (max-width:900px){
+  .hero{padding:18px 0 26px}
+  .hero-grid,.final-grid{grid-template-columns:minmax(0,1fr);gap:18px}
+  .photo{display:none}
+  h1{font-size:clamp(24px,6.4vw,33px);margin-top:12px}
+  .sub{font-size:16px}
+  .card{padding:20px 18px}
+  .sec{padding:32px 0}
+  .grid4,.gifts-grid{grid-template-columns:minmax(0,1fr)}
+  .ex-box{grid-template-columns:76px minmax(0,1fr);padding:18px}
+  .ex-box img{width:76px;height:76px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">Бесплатный открытый урок для бухгалтеров</span>
+      <h1>Как бухгалтеру зарабатывать больше, <span>используя ИИ в работе</span></h1>
+      <p class="sub">Без переработок и сложных технологий. Галина Волкова откроет свой экран и покажет на реальных задачах: требование ФНС, договор, сверка КУДиР.</p>
+      <div class="meta">
+        <span>Сегодня в <b class="lp-time">13:00</b> мск</span>
+        <span>Онлайн, 60 минут</span>
+        <span>Бесплатно</span>
+      </div>
+      <div class="photo">
+        <img src="https://fs.getcourse.ru/fileservice/file/download/a/449416/sc/0/h/643dd4694d251ee5ac88356c7a686822.webp" width="522" height="870" alt="Галина Волкова">
+      </div>
+    </div>
+
+    <form class="card" onsubmit="return demo(event)">
+      <h2>Зарегистрируйтесь бесплатно</h2>
+      <div class="free">Урок идёт один раз, записи не будет</div>
+      <input class="f-input" placeholder="Ваше имя">
+      <input class="f-input" placeholder="Ваш email">
+      <input class="f-input" placeholder="Номер телефона">
+      <button class="btn" type="submit">Зарегистрироваться и войти на урок</button>
+      <div class="small">Регистрация и участие ни к чему не обязывают</div>
+      <div class="gift"><span>🎁</span><span>Сразу после регистрации — гайд <b>«5 промтов для бухгалтера»</b></span></div>
+    </form>
+  </div>
+</header>
+
+<section class="wrap sec">
+  <h2 class="h2">Что покажем на уроке</h2>
+  <p class="lead">Не обзор нейросетей, а рабочие сценарии бухгалтера с демонстрацией прямо в эфире.</p>
+  <div class="grid4">
+    <div class="item"><div class="n">1</div><div><b>Требование из налоговой</b><p>Как из приложения на 30 листах за минуты получить структуру ответа и список документов.</p></div></div>
+    <div class="item"><div class="n">2</div><div><b>Разбор КУДиР и больших выгрузок</b><p>Что из тысячи операций действительно нужно проверить руками.</p></div></div>
+    <div class="item"><div class="n">3</div><div><b>Проверка договора и консультация</b><p>Риски, аргументы и основа ответа клиенту — быстрее, чем при ручном поиске.</p></div></div>
+    <div class="item"><div class="n">4</div><div><b>Как это превращается в доход</b><p>20 освободившихся часов в месяц — это ещё два клиента по 20 000 ₽.</p></div></div>
+  </div>
+</section>
+
+<section class="gifts">
+  <div class="wrap">
+    <h2 class="h2">Заберёте с собой</h2>
+    <div class="gifts-grid">
+      <div class="g"><div class="lbl">Сразу после регистрации</div><b>Гайд «5 промтов для бухгалтера»</b><span>Готовые запросы, которые можно попробовать ещё до эфира.</span></div>
+      <div class="g"><div class="lbl">Подарок участникам</div><b>Карта нейросетей для бухгалтера</b><span>Какую задачу какой сервис закрывает и где у каждого ограничения.</span></div>
+      <div class="g"><div class="lbl">Подарок участникам</div><b>4 промта с урока</b><span>Те самые запросы, которые Галина покажет в эфире.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap ex">
+  <div class="ex-box">
+    <img src="https://fs.getcourse.ru/fileservice/file/download/a/449416/sc/0/h/900fe97b5565239f1dd74593a29c2e52.webp" width="110" height="110" alt="Галина Волкова">
+    <div>
+      <b>Галина Волкова</b>
+      <p>27 лет в бухгалтерии, собственник аутсорсинговой компании. Внедрила ИИ в работу своей команды и показывает его на тех задачах, с которыми бухгалтер сталкивается каждый день.</p>
+      <div class="nums">
+        <div><b>200+</b><span>клиентов на обслуживании</span></div>
+        <div><b>20</b><span>сотрудников в команде</span></div>
+        <div><b>40+ млн ₽</b><span>годовой оборот</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap final-grid">
+    <div>
+      <h2>Увидимся на уроке сегодня в <span class="lp-time">13:00</span> мск</h2>
+      <p>Ни ВПН, ни иностранных карт не нужно: всё работает в обычном браузере на русском языке. Подпись под ответом всегда остаётся за вами.</p>
+    </div>
+    <form class="card" onsubmit="return demo(event)">
+      <h2>Получить ссылку на урок</h2>
+      <div class="free">Бесплатно, 60 минут, онлайн</div>
+      <input class="f-input" placeholder="Ваше имя">
+      <input class="f-input" placeholder="Ваш email">
+      <input class="f-input" placeholder="Номер телефона">
+      <button class="btn" type="submit">Зарегистрироваться</button>
+    </form>
+  </div>
+</section>
+
+<footer>Макет для теста. Бухгалтер на миллион</footer>
+<div class="demo">Тестовый макет: форма не отправляет данные</div>
+
+<script>
+function demo(e){ e.preventDefault(); alert('Это макет для просмотра. В рабочей версии здесь стандартная форма GetCourse.'); return false; }
+(function(){
+  function upd(){
+    var p={};
+    new Intl.DateTimeFormat('ru-RU',{timeZone:'Europe/Moscow',hour:'2-digit',minute:'2-digit',hour12:false})
+      .formatToParts(new Date()).forEach(function(x){ p[x.type]=parseInt(x.value,10); });
+    var total=(p.hour%24)*60+p.minute, slot=Math.floor(total/10)*10+10;
+    if(slot>=1440) slot-=1440;
+    var t=('0'+Math.floor(slot/60)).slice(-2)+':'+('0'+(slot%60)).slice(-2);
+    document.querySelectorAll('.lp-time').forEach(function(el){ el.textContent=t; });
+  }
+  upd(); setInterval(upd,20000);
+})();
+</script>
+</body>
+</html>
