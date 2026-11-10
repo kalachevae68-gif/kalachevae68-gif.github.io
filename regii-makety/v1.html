@@ -28,7 +28,9 @@ img{max-width:100%;height:auto;display:block}
 
 /* первый экран */
 .hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:48px;padding:44px 0 52px;align-items:start}
-h1{font-size:clamp(32px,5vw,62px);line-height:.98;font-weight:900;letter-spacing:-.035em;text-transform:uppercase}
+.kick{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
+.calc-title{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:10px}
+h1{margin-top:12px;font-size:clamp(32px,5vw,62px);line-height:.98;font-weight:900;letter-spacing:-.035em;text-transform:uppercase}
 h1 span{color:var(--orange)}
 .dek{margin-top:20px;font-size:19px;color:var(--soft);max-width:560px}
 
@@ -130,11 +132,13 @@ footer{padding:26px 0 60px;font-size:13.5px;color:var(--soft);text-align:center}
   <section class="hero">
     <div class="col-left">
       <div class="hero-text">
-      <h1>Шестого клиента взять <span>некуда</span></h1>
-      <p class="dek">Пять клиентов по 18–20 тысяч — это 90 000 ₽ и ни одного свободного вечера. Нанять помощницу невыгодно, работать дальше одной невозможно. На бесплатном уроке Галина Волкова покажет третий путь.</p>
+      <div class="kick">Бесплатный онлайн-урок для бухгалтеров · нейросети в работе</div>
+      <h1>Ещё два клиента <span>без помощницы</span> и без переработок</h1>
+      <p class="dek">Галина Волкова откроет свой экран и покажет, как нейросеть забирает механику: требование ФНС на 30 листах, договор контрагента, сверку КУДиР. Вы проверяете готовый черновик и ставите подпись.</p>
       </div>
 
       <div class="calc-wrap">
+      <div class="calc-title">Почему помощница не выход</div>
       <div class="calc">
         <div class="calc-row"><span>Пять клиентов на обслуживании</span><b>90 000 ₽</b></div>
         <div class="calc-row minus"><span>Помощница: оклад, налоги, взносы</span><b>−50 000 ₽</b></div>
@@ -147,7 +151,7 @@ footer{padding:26px 0 60px;font-size:13.5px;color:var(--soft);text-align:center}
 
     <form class="form" onsubmit="return demo(event)">
       <h2>Место на уроке</h2>
-      <div class="meta">Сегодня в <b class="lp-time">13:00</b> мск · онлайн · бесплатно</div>
+      <div class="meta">«Как бухгалтеру зарабатывать больше, используя ИИ в работе»<br>Сегодня в <b class="lp-time">13:00</b> мск · онлайн · бесплатно</div>
       <input class="f-input" placeholder="Ваше имя">
       <input class="f-input" placeholder="Ваш email">
       <input class="f-input" placeholder="Номер телефона">
