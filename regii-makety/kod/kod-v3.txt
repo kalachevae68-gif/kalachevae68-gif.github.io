@@ -40,6 +40,13 @@ html{scroll-behavior:smooth}
 .lp-ii3 h1{margin-top:14px;font-size:clamp(27px,3.8vw,44px);font-weight:900;line-height:1.08;letter-spacing:-.03em}
 .lp-ii3 h1 span{color:var(--orange)}
 .lp-ii3 .sub{margin:12px auto 0;color:var(--soft);max-width:560px}
+.lp-ii3 /* призыв в первом экране */
+.hero-act{margin:20px auto 0;display:inline-flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
+.lp-ii3 .hero-act .act{background:var(--orange);color:#fff;text-decoration:none;font-weight:800;font-size:17.5px;padding:16px 30px;
+  border-radius:999px;box-shadow:0 12px 26px rgba(255,138,0,.3);transition:.16s}
+.lp-ii3 .hero-act .act:hover{background:#E97C00;transform:translateY(-1px)}
+.lp-ii3 .hero-act span{font-size:15px;color:var(--soft)}
+.lp-ii3 .hero-act span b{color:var(--ink)}
 .lp-ii3 /* переключатель */
 .toggle{margin:22px auto 0;display:inline-flex;background:var(--soft-bg);border-radius:999px;padding:5px;gap:4px}
 .lp-ii3 .toggle button{border:0;background:transparent;font-family:inherit;font-size:15.5px;font-weight:800;color:var(--soft);
@@ -98,8 +105,13 @@ html{scroll-behavior:smooth}
 .lp-ii3 .result{grid-template-columns:minmax(0,1fr)}
 .lp-ii3 .form{grid-template-columns:minmax(0,1fr)}
 .lp-ii3 .cards{grid-template-columns:minmax(0,1fr)}
-.lp-ii3 .bar .org, .lp-ii3 .bar .when{display:none}
-.lp-ii3 .bar a{margin-left:auto}
+.lp-ii3 .bar .org{display:none}
+.lp-ii3 .bar .when{font-size:13px}
+.lp-ii3 .bar a{margin-left:auto;padding:9px 14px;font-size:14px}
+.lp-ii3 .hero-act{display:block;margin-top:16px}
+.lp-ii3 .hero-act .act{display:block;text-align:center;font-size:17px;padding:16px 18px;border-radius:14px}
+.lp-ii3 .hero-act span{display:block;margin-top:10px;font-size:14px}
+.lp-ii3 .toggle{margin-top:18px}
 }
 
 .lp-ii3 .lp-jump{display:block;text-align:center;background:#FF8A00;color:#fff;text-decoration:none;
@@ -138,6 +150,11 @@ html{scroll-behavior:smooth}
   <span class="kick">Бесплатный онлайн-урок · нейросети для бухгалтера</span>
   <h1>Среда. Прилетело требование <span>на 30 листах</span></h1>
   <p class="sub">Посмотрите, как выглядит один и тот же день бухгалтера — до и после того, как механику забирает нейросеть.</p>
+
+  <div class="hero-act">
+    <a href="#lp-reg" class="act">Записаться на урок</a>
+    <span>Сегодня в <b class="lp-time">13:00</b> мск · бесплатно · записи не будет</span>
+  </div>
 
   <div class="toggle">
     <button id="bNow" class="on">Как сейчас</button>
