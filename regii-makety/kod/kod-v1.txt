@@ -122,10 +122,26 @@ html{scroll-behavior:smooth}
 .lp-ii1 .reg p{font-size:15px;margin-top:8px}
 .lp-ii1 .bar .org{display:none}
 }
+.lp-ii1 /* Боковые поля: вертикальные отступы секций перебивали padding контейнера, .lp-ii1 из-за этого на телефоне текст прилипал к краям экрана. */
+.wrap{padding-left:20px !important;padding-right:20px !important}
+.lp-ii1 .sheet, .lp-ii1 .day, .lp-ii1 .result, .lp-ii1 .reg{padding-left:20px;padding-right:20px}
+@media (max-width:600px){
+.lp-ii1 .wrap{padding-left:16px !important;padding-right:16px !important}
+.lp-ii1 .sheet, .lp-ii1 .day, .lp-ii1 .result{padding-left:0;padding-right:0}
+}
 
 .lp-ii1 .lp-jump{display:block;text-align:center;background:#FF7A00;color:#fff;text-decoration:none;
   font-weight:800;font-size:17.5px;padding:17px 20px;border-radius:12px;transition:background .16s}
 .lp-ii1 .lp-jump:hover{background:#E26900;color:#fff}
+
+/* Боковые поля: вертикальные отступы секций перебивали padding контейнера,
+   из-за этого на телефоне текст прилипал к краям экрана. */
+.lp-ii1 .wrap{padding-left:20px !important;padding-right:20px !important}
+.lp-ii1 .sheet,.lp-ii1 .day,.lp-ii1 .result,.lp-ii1 .reg{padding-left:20px;padding-right:20px}
+@media (max-width:600px){
+  .lp-ii1 .wrap{padding-left:16px !important;padding-right:16px !important}
+  .lp-ii1 .sheet,.lp-ii1 .day,.lp-ii1 .result{padding-left:0;padding-right:0}
+}
 
 /* ===== Стандартная форма GetCourse внутри макета ===== */
 .lp-ii1 .gc-form-slot{width:100%}

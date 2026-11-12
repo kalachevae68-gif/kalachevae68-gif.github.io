@@ -122,6 +122,15 @@ footer{padding:28px 0 60px;font-size:13.5px;color:#868C99;text-align:center}
   .reg p{font-size:15px;margin-top:8px}
   .bar .org{display:none}
 }
+
+/* Боковые поля: вертикальные отступы секций перебивали padding контейнера,
+   из-за этого на телефоне текст прилипал к краям экрана. */
+.wrap{padding-left:20px !important;padding-right:20px !important}
+.sheet,.day,.result,.reg{padding-left:20px;padding-right:20px}
+@media (max-width:600px){
+  .wrap{padding-left:16px !important;padding-right:16px !important}
+  .sheet,.day,.result{padding-left:0;padding-right:0}
+}
 </style>
 </head>
 <body>
