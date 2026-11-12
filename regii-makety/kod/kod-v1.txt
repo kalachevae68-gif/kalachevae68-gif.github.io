@@ -94,16 +94,25 @@ html{scroll-behavior:smooth}
 .lp-ii1 .demo{position:fixed;left:12px;bottom:12px;z-index:9;background:var(--ink);color:#fff;font-size:12.5px;padding:8px 12px;border-radius:10px;opacity:.92}
 
 @media (max-width:900px){
-.lp-ii1 .hero{padding:20px 0 4px}
-.lp-ii1 h1{font-size:clamp(24px,6.6vw,33px)}
-.lp-ii1 .sub{font-size:16px}
-.lp-ii1 .calc-body{grid-template-columns:minmax(0,1fr)}
-.lp-ii1 .cell{padding:18px}
-.lp-ii1 .cell .val{font-size:30px}
+.lp-ii1 /* на телефоне ужимаем расчёт, .lp-ii1 чтобы форма была ближе к первому экрану */
+  .hero{padding:16px 0 4px}
+.lp-ii1 h1{font-size:clamp(23px,6.2vw,31px)}
+.lp-ii1 .sub{margin-top:10px;font-size:15.5px}
+.lp-ii1 .calc{margin-top:18px}
+.lp-ii1 .calc-head{padding:16px}
+.lp-ii1 .calc-head b{font-size:16.5px}
+.lp-ii1 .pick{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+.lp-ii1 .calc-body{grid-template-columns:repeat(2,minmax(0,1fr))}
+.lp-ii1 .cell:last-child{grid-column:1 / -1}
+.lp-ii1 .cell{padding:14px}
+.lp-ii1 .cell .lbl{font-size:13px}
+.lp-ii1 .cell .val{font-size:25px}
+.lp-ii1 .cell .hint{margin-top:6px;font-size:12.5px}
+.lp-ii1 .bars{margin-top:10px;height:8px}
+.lp-ii1 .calc-foot{padding:14px 16px;font-size:13.5px}
 .lp-ii1 .reg{grid-template-columns:minmax(0,1fr);padding:20px}
 .lp-ii1 .tgrid{grid-template-columns:minmax(0,1fr)}
-.lp-ii1 .pick{grid-template-columns:repeat(2,minmax(0,1fr))}
-.lp-ii1 .pick button{padding:12px 10px}
+.lp-ii1 .pick button{padding:11px 6px;font-size:14.5px}
 .lp-ii1 .bar .org{display:none}
 }
 

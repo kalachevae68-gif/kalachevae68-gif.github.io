@@ -94,16 +94,25 @@ footer{padding:28px 0 60px;font-size:13.5px;color:#868C99;text-align:center}
 .demo{position:fixed;left:12px;bottom:12px;z-index:9;background:var(--ink);color:#fff;font-size:12.5px;padding:8px 12px;border-radius:10px;opacity:.92}
 
 @media (max-width:900px){
-  .hero{padding:20px 0 4px}
-  h1{font-size:clamp(24px,6.6vw,33px)}
-  .sub{font-size:16px}
-  .calc-body{grid-template-columns:minmax(0,1fr)}
-  .cell{padding:18px}
-  .cell .val{font-size:30px}
+  /* на телефоне ужимаем расчёт, чтобы форма была ближе к первому экрану */
+  .hero{padding:16px 0 4px}
+  h1{font-size:clamp(23px,6.2vw,31px)}
+  .sub{margin-top:10px;font-size:15.5px}
+  .calc{margin-top:18px}
+  .calc-head{padding:16px}
+  .calc-head b{font-size:16.5px}
+  .pick{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+  .calc-body{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cell:last-child{grid-column:1 / -1}
+  .cell{padding:14px}
+  .cell .lbl{font-size:13px}
+  .cell .val{font-size:25px}
+  .cell .hint{margin-top:6px;font-size:12.5px}
+  .bars{margin-top:10px;height:8px}
+  .calc-foot{padding:14px 16px;font-size:13.5px}
   .reg{grid-template-columns:minmax(0,1fr);padding:20px}
   .tgrid{grid-template-columns:minmax(0,1fr)}
-  .pick{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .pick button{padding:12px 10px}
+  .pick button{padding:11px 6px;font-size:14.5px}
   .bar .org{display:none}
 }
 </style>
