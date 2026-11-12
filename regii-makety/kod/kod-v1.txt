@@ -47,6 +47,7 @@ html{scroll-behavior:smooth}
 .lp-ii1 .pick button{border:1.5px solid var(--line);background:#fff;color:var(--ink);font-family:inherit;font-size:16px;font-weight:700;
   padding:12px 20px;border-radius:12px;cursor:pointer;transition:.14s}
 .lp-ii1 .pick button:hover{border-color:var(--orange)}
+.lp-ii1 .pick .n{display:none}
 .lp-ii1 .pick button.on{background:var(--ink);border-color:var(--ink);color:#fff}
 .lp-ii1 .calc-body{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line)}
 .lp-ii1 .cell{background:var(--card);padding:24px 26px}
@@ -112,7 +113,13 @@ html{scroll-behavior:smooth}
 .lp-ii1 .calc-foot{padding:14px 16px;font-size:13.5px}
 .lp-ii1 .reg{grid-template-columns:minmax(0,1fr);padding:20px}
 .lp-ii1 .tgrid{grid-template-columns:minmax(0,1fr)}
-.lp-ii1 .pick button{padding:11px 6px;font-size:14.5px}
+.lp-ii1 .pick{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.lp-ii1 .pick button{padding:11px 4px;font-size:14.5px}
+.lp-ii1 .pick .w{display:none}
+.lp-ii1 .pick .n{display:inline}
+.lp-ii1 .reg{padding:18px;margin:18px 0 8px}
+.lp-ii1 .reg h2{font-size:20px}
+.lp-ii1 .reg p{font-size:15px;margin-top:8px}
 .lp-ii1 .bar .org{display:none}
 }
 
@@ -157,11 +164,11 @@ html{scroll-behavior:smooth}
     <div class="calc-head">
       <b>Сколько клиентов вы ведёте сейчас?</b>
       <div class="pick">
-        <button data-c="0">Пока нет</button>
+        <button data-c="0"><span class="w">Пока нет</span><span class="n">Нет</span></button>
         <button data-c="3">3</button>
         <button data-c="5" class="on">5</button>
         <button data-c="8">8</button>
-        <button data-c="11">11 и больше</button>
+        <button data-c="11"><span class="w">11 и больше</span><span class="n">11+</span></button>
       </div>
     </div>
 
@@ -174,7 +181,7 @@ html{scroll-behavior:smooth}
       </div>
       <div class="cell free">
         <div class="lbl" id="lbl2">Вернёт нейросеть</div>
-        <div class="val"><span id="hoursFree">20</span> часов/мес</div>
+        <div class="val"><span id="hoursFree">20</span> ч/мес</div>
         <div class="bars"><i id="barFree" style="width:45%"></i></div>
         <div class="hint" id="h2">столько экономит команда Галины за месяц</div>
       </div>
