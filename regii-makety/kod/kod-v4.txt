@@ -39,7 +39,7 @@ html{scroll-behavior:smooth}
 .lp-ii4 .photo{margin-top:20px;max-width:300px}
 .lp-ii4 .photo img{filter:drop-shadow(0 18px 34px rgba(170,90,10,.22))}
 .lp-ii4 /* карточка формы */
-.card{background:#fff;border-radius:22px;padding:28px 26px;border-top:6px solid var(--orange);box-shadow:0 22px 54px rgba(150,90,20,.16)}
+.card{background:#fff;color:var(--ink);border-radius:22px;padding:28px 26px;border-top:6px solid var(--orange);box-shadow:0 22px 54px rgba(150,90,20,.16)}
 .lp-ii4 .card h2{font-size:22px;font-weight:900;line-height:1.2}
 .lp-ii4 .card .free{margin:8px 0 18px;font-size:15px;color:var(--soft)}
 .lp-ii4 .f-input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:15px 16px;font-family:inherit;font-size:16.5px;margin-bottom:11px;background:#FFFDFA}
@@ -80,6 +80,14 @@ html{scroll-behavior:smooth}
 .lp-ii4 .final-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:34px;align-items:center}
 .lp-ii4 .final h2{font-size:clamp(23px,2.9vw,34px);font-weight:900;line-height:1.14}
 .lp-ii4 .final p{margin-top:12px;color:#C6C8CF}
+.lp-ii4 .final-cta{background:#fff;color:var(--ink);border-radius:22px;padding:26px 24px;text-align:center;border-top:6px solid var(--orange);box-shadow:0 22px 54px rgba(0,0,0,.35)}
+.lp-ii4 .final-cta b{display:block;font-size:21px;font-weight:900;line-height:1.25}
+.lp-ii4 .final-cta span{display:block;margin-top:8px;font-size:15.5px;color:var(--soft)}
+.lp-ii4 .final-cta span i{font-style:normal;font-weight:700;color:var(--ink)}
+.lp-ii4 .final-cta .go{display:block;margin-top:18px;background:var(--orange);color:#fff;text-decoration:none;font-weight:800;font-size:18px;
+  padding:18px;border-radius:14px;box-shadow:0 12px 26px rgba(244,96,10,.3);transition:.16s}
+.lp-ii4 .final-cta .go:hover{background:var(--orange-dp);transform:translateY(-1px)}
+.lp-ii4 .final-cta small{display:block;margin-top:12px;font-size:12.5px;color:var(--soft);line-height:1.45}
 .lp-ii4 footer{padding:26px 0 60px;font-size:13.5px;color:#8B9099;text-align:center}
 .lp-ii4 .demo{position:fixed;left:12px;bottom:12px;z-index:9;background:var(--ink);color:#fff;font-size:12.5px;padding:8px 12px;border-radius:10px;opacity:.92}
 
@@ -96,6 +104,8 @@ html{scroll-behavior:smooth}
 .lp-ii4 .grid4, .lp-ii4 .gifts-grid{grid-template-columns:minmax(0,1fr)}
 .lp-ii4 .ex-box{grid-template-columns:76px minmax(0,1fr);padding:18px}
 .lp-ii4 .ex-box img{width:76px;height:76px}
+.lp-ii4 .final-cta{padding:20px 18px}
+.lp-ii4 .final-cta b{font-size:19px}
 }
 
 .lp-ii4 .lp-jump{display:block;text-align:center;background:#FF8A00;color:#fff;text-decoration:none;
@@ -190,9 +200,12 @@ html{scroll-behavior:smooth}
       <h2>Увидимся на уроке сегодня в <span class="lp-time">13:00</span> мск</h2>
       <p>Ни ВПН, ни иностранных карт не нужно: всё работает в обычном браузере на русском языке. Подпись под ответом всегда остаётся за вами.</p>
     </div>
-    <div class="card"><h2>Получить ссылку на урок</h2>
-      <div class="free">Онлайн, бесплатно</div>
-      <a href="#lp-reg" class="lp-jump">Записаться на урок</a></div>
+    <div class="final-cta">
+      <b>Место на уроке ещё можно занять</b>
+      <span>Сегодня в <i class="lp-time">13:00</i> мск · онлайн · бесплатно</span>
+      <a href="#lp-reg" class="go">Зарегистрироваться</a>
+      <small>Кнопка вернёт к форме в начале страницы, регистрация занимает полминуты</small>
+    </div>
   </div>
 </section>
 </div>
